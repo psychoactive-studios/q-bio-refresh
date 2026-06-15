@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Q Bio | The Comprehensive Physical Exam for Longitudinal Health</title>
+<meta name="description" content="Q Bio combines whole-body MRI, biomarkers, genetics, wearable data, and physician review into the Q Exam — a comprehensive baseline organized in the Q Bio Health Dashboard. Available at our Redwood City clinic and through partners.">
+<link rel="canonical" href="https://www.q.bio/">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://q.bio/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta property="og:title" content="Q Bio | The Comprehensive Physical Exam for Longitudinal Health">
+<meta property="og:description" content="Q Bio combines whole-body MRI, biomarkers, genetics, wearable data, and physician review into the Q Exam — organized in the Q Bio Health Dashboard.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.q.bio/">
+<meta property="og:image" content="https://www.q.bio/assets/logos/qbio-wordmark-white.png">
+<meta name="twitter:image" content="https://www.q.bio/assets/logos/qbio-wordmark-white.png">
+<meta property="og:site_name" content="Q Bio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Q Bio | The Comprehensive Physical Exam for Longitudinal Health">
+<meta name="twitter:description" content="Q Bio combines whole-body MRI, biomarkers, genetics, wearable data, and physician review into the Q Exam — organized in the Q Bio Health Dashboard.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Q Bio",
+  "url": "https://www.q.bio/",
+  "logo": "https://www.q.bio/assets/logos/qbio-wordmark-white.png",
+  "description": "Q Bio is a health technology company that built the Q Exam and the Q Bio Health Dashboard — a comprehensive, longitudinal physical exam combining whole-body MRI, blood biomarkers, genetics, wearable data, and physician review.",
+  "foundingDate": "2015",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Redwood City",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": []
+}
+</script>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/site.css">
+<link rel="stylesheet" href="styles/annotated-dashboard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<!-- Hero poster: preload so the first paint of the hero is never empty. -->
+<link rel="preload" as="image" href="assets/videos/clinic-hero-poster.jpg" fetchpriority="high">
+
+<style>
+  .q-skip {
+    position: absolute; left: -9999px; top: 0;
+    background: #07203F; color: #fff; padding: 10px 16px;
+    font-size: 13.5px; font-weight: 600; z-index: 9999;
+    border-radius: 0 0 6px 6px;
+  }
+  .q-skip:focus { left: 16px; outline: 2px solid #6FA9FF; outline-offset: 2px; }
+  /* =====================================================================
+     Home page — revised IA
+     Reuses tokens.css + site.css (Fraunces serif + Inter UI + mono eyebrow).
+     Adds local classes prefixed .h- for home-specific blocks.
+     ===================================================================== */
+
+  body { background: #FBFAF7; color: var(--ink-1); }
+
+  /* ---------- Topbar: solid, no hero overlay ---------- */
+  /* Use site.css default sticky topbar. Mobile primary CTA only. */
+  .q-top-inner { gap: 24px; }
+  .q-actions .ghost {
+    font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.9);
+    padding: 10px 14px; border-radius: var(--r-md);
+  }
+  .q-actions .ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  @media (max-width: 880px) {
+    .q-actions .ghost { display: none; } /* secondary CTA goes into drawer */
+  }
+  /* Mobile menu drawer */
+  .q-menu-btn {
+    display: none;
+    width: 44px; height: 44px;
+    border: 1px solid rgba(7,32,63,0.12);
+    background: #fff; border-radius: var(--r-md);
+    color: var(--ink-1);
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+  }
+  @media (max-width: 880px) {
+    .q-menu-btn { display: inline-flex; }
+    .q-top-inner { grid-template-columns: auto 1fr auto auto; }
+    .q-nav { display: none; }
+  }
+  .q-drawer {
+    position: fixed; inset: 0; z-index: 60;
+    background: rgba(7,16,30,0.45);
+    display: none;
+  }
+  .q-drawer[data-open="true"] { display: block; }
+  .q-drawer-panel {
+    position: absolute; right: 0; top: 0; bottom: 0;
+    width: min(360px, 86vw);
+    background: #fff;
+    padding: 24px 24px 32px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .q-drawer-panel .close {
+    align-self: flex-end;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(7,32,63,0.12); background: #fff; border-radius: var(--r-md);
+    margin-bottom: 12px; cursor: pointer; color: var(--ink-1);
+  }
+  .q-drawer-panel a {
+    padding: 14px 4px; border-bottom: 1px solid rgba(7,32,63,0.06);
+    font-size: 16px; color: var(--ink-1); font-weight: 500;
+  }
+  .q-drawer-panel .actions { margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
+
+  /* ---------- HERO: product-led, dual-CTA, dashboard preview ---------- */
+  .h-hero {
+    padding: clamp(64px, 8vw, 112px) var(--pad) clamp(48px, 6vw, 80px);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    background: var(--warm-1);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .h-hero-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 90% 10%, rgba(15,117,255,0.06), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 90%, rgba(7,32,63,0.04), transparent 60%);
+  }
+  .h-hero-inner {
+    max-width: var(--max); width: 100%; margin: 0 auto; position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(40px, 6vw, 96px);
+    align-items: center;
+  }
+  .h-hero-copy { max-width: 640px; }
+  .h-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase;
+    color: var(--q-blue);
+  }
+  .h-eyebrow .sep { color: rgba(7,32,63,0.2); }
+  .h-eyebrow .meta { color: var(--fg-3); }
+  .h-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5.4vw, 78px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink-1);
+    margin: 22px 0 0;
+    max-width: 18ch;
+    font-feature-settings: 'ss01';
+    text-wrap: balance;
+  }
+  .h-hero h1 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-hero .lede {
+    margin-top: 22px;
+    max-width: 56ch;
+    font-size: clamp(15.5px, 1.15vw, 18px);
+    line-height: 1.55;
+    color: var(--fg-1);
+  }
+  .h-hero .definition {
+    margin-top: 22px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--q-blue);
+    background: rgba(15,117,255,0.04);
+    font-size: 14px; line-height: 1.55;
+    color: var(--fg-1);
+    max-width: 56ch;
+  }
+  .h-hero .definition strong { color: var(--ink-1); font-weight: 600; }
+  .h-hero .ctas {
+    display: flex; gap: 12px; margin-top: 28px;
+    flex-wrap: wrap; align-items: center;
+  }
+  .h-hero .meta-line {
+    margin-top: 16px;
+    font-size: 13px; color: var(--fg-3);
+  }
+  .h-hero .meta-line a { color: var(--ink-1); border-bottom: 1px solid rgba(7,32,63,0.18); }
+  .h-hero .meta-line a:hover { color: var(--q-blue); border-color: var(--q-blue); }
+
+  /* Product screenshot frame — real Dashboard image, used in hero + showcase */
+  .h-shot {
+    background: #fff;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(7,32,63,0.04), 0 30px 80px -28px rgba(7,32,63,0.22);
+    position: relative;
+    margin: 0;
+  }
+  .h-shot .chrome {
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, #fff, #F7F8FB);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+  }
+  .h-shot .chrome .dots { display: inline-flex; gap: 6px; }
+  .h-shot .chrome .dots span { width: 10px; height: 10px; border-radius: 50%; background: #E2E4EA; }
+  .h-shot .chrome .label {
+    justify-self: center;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .h-shot .chrome .live {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--q-blue);
+    background: rgba(15,117,255,0.08);
+    padding: 4px 8px; border-radius: var(--r-pill);
+  }
+  .h-shot .chrome .live::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--q-blue); }
+  .h-shot img { display: block; width: 100%; height: auto; background: #F4F6FA; }
+  .h-shot .pin {
+    position: absolute;
+    top: 64px; left: 24px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    background: rgba(7,16,30,0.92); color: #fff;
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px -8px rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+  .h-shot .pin .b { width: 5px; height: 5px; border-radius: 50%; background: #6FA9FF; }
+  @media (max-width: 720px) { .h-shot .pin { display: none; } .h-shot .chrome .label { font-size: 9.5px; } }
+
+  /* Legacy hero preview card (no longer used in markup; kept for compatibility) */
+  .h-preview {
+    background: #fff;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 12px;
+    box-shadow: 0 1px 0 rgba(7,32,63,0.04), 0 20px 60px -24px rgba(7,32,63,0.18);
+    overflow: hidden;
+    align-self: stretch;
+  }
+  .h-preview-bar {
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    background: var(--bg-1);
+  }
+  .h-preview-bar .t { font-size: 12px; font-weight: 600; color: var(--ink-1); letter-spacing: -0.005em; }
+  .h-preview-bar .t .name { color: var(--fg-3); font-weight: 500; margin-left: 8px; }
+  .h-preview-bar .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--q-blue); padding: 4px 8px;
+    background: rgba(15,117,255,0.08); border-radius: var(--r-pill);
+  }
+  .h-preview-bar .pill::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--q-blue); }
+  .h-preview-body {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    min-height: 380px;
+  }
+  .h-preview-systems {
+    padding: 14px 12px;
+    border-right: 1px solid rgba(7,32,63,0.06);
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .h-preview-systems .sec {
+    font-family: var(--font-mono);
+    font-size: 9.5px; letter-spacing: 1.3px; text-transform: uppercase;
+    color: var(--fg-3); padding: 6px 8px;
+  }
+  .h-preview-systems .sys {
+    display: grid; grid-template-columns: 14px 1fr auto; gap: 8px;
+    align-items: center;
+    padding: 7px 8px;
+    font-size: 12px; color: var(--ink-1);
+    border-radius: 4px;
+  }
+  .h-preview-systems .sys.active { background: rgba(15,117,255,0.06); color: var(--q-blue); }
+  .h-preview-systems .dot { width: 6px; height: 6px; border-radius: 50%; background: #20C085; }
+  .h-preview-systems .dot.amber { background: #EBB513; }
+  .h-preview-systems .dot.gray { background: #C2C3C8; }
+  .h-preview-systems .v { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); }
+  .h-preview-main { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .h-preview-main .kv {
+    display: flex; align-items: baseline; gap: 12px; justify-content: space-between;
+  }
+  .h-preview-main .kv .label { font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--fg-3); }
+  .h-preview-main .kv .val { font-family: 'Fraunces', serif; font-weight: 300; font-size: 24px; color: var(--ink-1); letter-spacing: -0.015em; }
+  .h-preview-main .chart {
+    height: 110px;
+    background: linear-gradient(180deg, rgba(15,117,255,0.07), rgba(15,117,255,0));
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid rgba(7,32,63,0.06);
+  }
+  .h-preview-main .chart svg { width: 100%; height: 100%; display: block; }
+  .h-preview-main .scale {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 9.5px;
+    color: var(--fg-3); letter-spacing: 0.8px;
+  }
+  .h-preview-note {
+    display: grid; grid-template-columns: 28px 1fr;
+    gap: 10px; align-items: start;
+    padding: 12px;
+    background: var(--bg-1);
+    border-radius: 6px;
+    font-size: 12px; line-height: 1.45; color: var(--fg-1);
+  }
+  .h-preview-note .av {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--ink-1); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+  }
+  .h-preview-note .who { font-weight: 600; color: var(--ink-1); margin-right: 6px; }
+  .h-preview-note .ago { color: var(--fg-3); font-family: var(--font-mono); font-size: 10px; }
+
+  @media (max-width: 980px) {
+    .h-hero-inner { grid-template-columns: 1fr; }
+    .h-preview { margin-top: 12px; }
+  }
+  @media (max-width: 560px) {
+    .h-preview-body { grid-template-columns: 1fr; }
+    .h-preview-systems { border-right: 0; border-bottom: 1px solid rgba(7,32,63,0.06); flex-direction: row; flex-wrap: wrap; }
+    .h-preview-systems .sec { width: 100%; }
+  }
+
+  /* ---------- Section heads (reused .h-h pattern) ---------- */
+  .h-h {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(7,32,63,0.10);
+  }
+  .h-h .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; color: var(--q-blue); text-transform: uppercase; padding-top: 6px; }
+  .h-h h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 4.2vw, 56px);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    color: var(--ink-1);
+    margin: 0;
+    max-width: 22ch;
+  }
+  .h-h h2 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-h p { font-size: 15.5px; line-height: 1.6; color: var(--fg-1); max-width: 60ch; margin: 18px 0 0; }
+  @media (max-width: 880px) { .h-h { grid-template-columns: 1fr; gap: 12px; padding-top: 32px; margin-bottom: 32px; } }
+
+  /* ---------- What the Q Exam includes — 6-card grid ---------- */
+  .h-incl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(7,32,63,0.10);
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
+  .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2; }
+  .h-incl.is-five > article:nth-child(n+4) { grid-column: span 3; }
+  .h-incl > article {
+    background: #fff;
+    padding: 28px 24px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .h-incl .num { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px; color: var(--q-blue); text-transform: uppercase; }
+  .h-incl h3 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--ink-1); margin: 0; }
+  .h-incl p { font-size: 13.5px; line-height: 1.55; color: var(--fg-3); margin: 0; }
+  @media (max-width: 1180px) {
+    .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
+    .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2; }
+    .h-incl.is-five > article:nth-child(n+4) { grid-column: span 3; }
+  }
+  @media (max-width: 720px) {
+    .h-incl.is-five > article:nth-child(n) { grid-column: span 6; }
+  }
+  @media (max-width: 880px) { .h-incl, .h-incl.is-five { grid-template-columns: 1fr; } }
+
+  /* ---------- What is Q Bio — anatomy + narrative + pillars ---------- */
+  .h-about { padding-top: clamp(56px, 7vw, 112px) !important; }
+
+  /* shared subsection eyebrow */
+  .h-about-sub .se,
+  .h-about-pillars .se {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--q-blue); font-weight: 600;
+    margin-bottom: clamp(14px, 1.4vw, 18px);
+  }
+
+  /* Right-side narrative column (logos + mission + pillars stacked) */
+  .h-about-narrative {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.2vw, 44px);
+    min-width: 0;
+    align-self: stretch;
+    justify-content: flex-start;
+  }
+
+  /* Academic origins logo row */
+  .h-acad-logos {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-wrap: wrap; align-items: center;
+    column-gap: clamp(20px, 2.4vw, 32px);
+    row-gap: clamp(14px, 1.6vw, 22px);
+  }
+  .h-acad-logos li {
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 28px;
+  }
+  .h-acad-logos img {
+    display: block;
+    height: auto; width: auto;
+    max-height: 24px; max-width: 100px;
+    object-fit: contain;
+    filter: grayscale(1) contrast(0.96);
+    opacity: 0.65;
+    transition: filter .25s, opacity .25s;
+  }
+  .h-acad-logos li:hover img { filter: none; opacity: 1; }
+
+  /* Mission block (no headline — lead paragraph treatment) */
+  .h-about-mission p {
+    margin: 0;
+    max-width: 56ch;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(18px, 1.4vw, 22px);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: var(--ink-1);
+  }
+
+  /* Pillars block — stacked rows in narrow narrative column */
+  .h-about-pillars { margin-top: 0; }
+  .h-about-pillars .h-about-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(7,32,63,0.03);
+  }
+  .h-about-pillars .h-about-points article {
+    background: var(--warm-1);
+    padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 26px);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    border-right: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .h-about-pillars .h-about-points article:last-child { border-bottom: 0; }
+  .h-about-pillars .h-about-points h3 {
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.25;
+    max-width: none;
+  }
+
+  /* Full-width subsection spacing inside the company section */
+  .h-about > .q-wrap > .h-about-sub {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    align-items: start;
+    margin-top: clamp(36px, 4vw, 56px);
+  }
+  .h-about > .q-wrap > .h-about-sub > .se {
+    margin-bottom: 0;
+    padding-top: 4px;
+  }
+  .h-about > .q-wrap > .h-about-sub + .h-about-sub {
+    margin-top: clamp(24px, 2.6vw, 36px);
+  }
+  .h-about > .q-wrap > .h-about-split {
+    margin-top: clamp(40px, 4.4vw, 64px);
+    align-items: stretch;
+  }
+  .h-about > .q-wrap > .h-about-split .h-about-pillars { height: 100%; }
+  .h-about > .q-wrap > .h-about-split .h-about-pillars .h-about-points {
+    height: 100%;
+  }
+  .h-about > .q-wrap > .h-about-split .h-about-pillars .h-about-points header {
+    background: var(--warm-1);
+    padding: clamp(20px, 2.2vw, 28px) clamp(20px, 2vw, 26px) clamp(14px, 1.4vw, 18px);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+  }
+  .h-about > .q-wrap > .h-about-split .h-about-pillars .h-about-points header .se {
+    display: block;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--q-blue); font-weight: 600;
+  }
+  .h-about > .q-wrap > .h-about-split .h-about-pillars .h-about-points article {
+    flex: 1;
+    justify-content: center;
+  }
+  @media (max-width: 880px) {
+    .h-about > .q-wrap > .h-about-sub { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  .h-about > .q-wrap > .h-about-anatomy {
+    margin-top: clamp(40px, 4.4vw, 64px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 2.8vw, 40px);
+  }
+  .h-about > .q-wrap > .h-about-anatomy .h-about-fig {
+    margin: 0;
+    background: var(--warm-1);
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(24px, 3vw, 48px);
+  }
+  .h-about > .q-wrap > .h-about-anatomy .h-about-fig img {
+    display: block;
+    max-width: 100%; max-height: 560px;
+    height: auto; width: auto;
+    object-fit: contain;
+  }
+  .h-about > .q-wrap > .h-about-anatomy .h-about-fig figcaption {
+    position: absolute;
+    bottom: clamp(12px, 1.4vw, 18px);
+    left: clamp(14px, 1.6vw, 20px);
+    padding: 6px 11px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase;
+    color: var(--ink-1);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 3px;
+  }
+  .h-about > .q-wrap > .h-about-anatomy .h-about-fig figcaption strong { color: var(--ink-1); font-weight: 600; }
+
+  /* Split: anatomy figure + narrative column */
+  .h-about-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+    gap: clamp(28px, 3.4vw, 48px);
+    margin-top: clamp(28px, 3.2vw, 44px);
+    align-items: stretch;
+  }
+  .h-about-fig {
+    margin: 0;
+    background: var(--warm-1);
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 2.4vw, 32px);
+  }
+  .h-about-fig img {
+    display: block;
+    max-width: 100%; min-width: 0;
+    width: auto; height: 100%;
+    max-height: 520px;
+    object-fit: contain;
+  }
+  .h-about-fig figcaption {
+    position: absolute;
+    bottom: clamp(12px, 1.4vw, 18px);
+    left: clamp(14px, 1.6vw, 20px);
+    padding: 6px 11px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase;
+    color: var(--ink-1);
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 3px;
+  }
+  .h-about-fig figcaption strong { color: var(--ink-1); font-weight: 600; }
+
+  @media (max-width: 880px) {
+    .h-about-split { grid-template-columns: 1fr; }
+    .h-about-fig { min-height: 320px; }
+  }
+
+  .h-about-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(7,32,63,0.03);
+  }
+  .h-about-points article {
+    background: var(--warm-1);
+    padding: clamp(22px, 2.4vw, 30px);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    display: flex; flex-direction: column; gap: 8px;
+    flex: 1;
+  }
+  .h-about-points article:last-child { border-bottom: 0; }
+  .h-about-points .e {
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--q-blue); font-weight: 600;
+  }
+  .h-about-points h3 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.2; letter-spacing: -0.018em;
+    color: var(--ink-1); margin: 0; max-width: 22ch;
+  }
+  .h-about-points h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-about-points p {
+    margin: 0; font-size: 14px; line-height: 1.55; color: var(--fg-1);
+    max-width: 56ch;
+  }
+  .h-what {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    background: rgba(7,32,63,0.03);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .h-what > article {
+    background: var(--warm-1, #fbfaf7);
+    padding: clamp(24px, 2.4vw, 32px);
+    display: flex; flex-direction: column; gap: 12px;
+    border-right: 1px solid rgba(7,32,63,0.08);
+  }
+  .h-what > article:last-child { border-right: none; }
+  .h-what .e {
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--q-blue);
+  }
+  .h-what h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(20px, 1.8vw, 24px);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    color: var(--ink-1);
+    margin: 2px 0 0;
+    max-width: 22ch;
+  }
+  .h-what h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-what p {
+    font-size: 14px; line-height: 1.6;
+    color: var(--fg-1);
+    margin: 0;
+  }
+  @media (max-width: 880px) {
+    .h-what { grid-template-columns: 1fr; }
+    .h-what > article { border-right: none; border-bottom: 1px solid rgba(7,32,63,0.08); }
+    .h-what > article:last-child { border-bottom: none; }
+  }
+
+  /* ---------- Definition row (info icon + body), above card grid ---------- */
+  .h-def {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-left: 2px solid var(--q-blue);
+    border-radius: 4px;
+    background: rgba(15,117,255,0.04);
+  }
+  .h-def .ico {
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: var(--q-blue); color: #fff;
+    font-family: var(--font-display); font-weight: 600; font-size: 12px;
+    margin-top: 1px;
+    flex: none;
+  }
+  .h-def p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--fg-1); max-width: 92ch; }
+  .h-def p strong { color: var(--ink-1); font-weight: 600; }
+  @media (max-width: 600px) { .h-def { padding: 14px 16px; } }
+
+  /* ---------- Slim full-width callout, below the card grid ---------- */
+  .h-callout {
+    margin-top: 18px;
+    background: var(--ink-1);
+    color: #fff;
+    border-radius: 4px;
+    padding: 22px clamp(20px, 2.4vw, 32px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .h-callout p {
+    margin: 0;
+    font-size: 14.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.86);
+    max-width: 92ch;
+  }
+  .h-callout p strong { color: #fff; font-weight: 600; }
+  .h-callout p .arr { color: #6FA9FF; margin-right: 6px; }
+  .h-callout a.cta {
+    font-family: var(--font-mono);
+    font-size: 11.5px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding-bottom: 3px;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .h-callout a.cta:hover { color: #6FA9FF; border-color: #6FA9FF; }
+  @media (max-width: 720px) { .h-callout { grid-template-columns: 1fr; } }
+
+  /* ---------- Why it matters — stat callouts ---------- */
+  .h-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(7,32,63,0.10);
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .h-stats > article {
+    background: #fff;
+    padding: clamp(28px, 3vw, 36px) clamp(22px, 2.2vw, 28px);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .h-stats .ico {
+    width: 34px; height: 34px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(15,117,255,0.06);
+    border-radius: 4px;
+    color: var(--q-blue);
+  }
+  .h-stats .v {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(44px, 5.4vw, 68px);
+    line-height: 0.95; letter-spacing: -0.025em;
+    color: var(--ink-1);
+    font-feature-settings: 'ss01';
+  }
+  .h-stats .v .u {
+    font-family: var(--font-display);
+    font-size: 0.34em; color: var(--fg-3); font-weight: 500;
+    margin-left: 6px; letter-spacing: -0.005em;
+  }
+  .h-stats h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 14px; letter-spacing: -0.005em;
+    color: var(--ink-1); margin: 0;
+  }
+  .h-stats p {
+    margin: 0; font-size: 13px; line-height: 1.5; color: var(--fg-3);
+  }
+  @media (max-width: 980px) { .h-stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .h-stats { grid-template-columns: 1fr; } }
+
+  /* ---------- Why it matters — 2-col compare ---------- */
+  .h-compare {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .h-compare > div { padding: clamp(28px, 3vw, 44px); display: flex; flex-direction: column; gap: 16px; }
+  .h-compare .col-a { background: #fff; border-right: 1px solid rgba(7,32,63,0.08); }
+  .h-compare .col-b { background: var(--ink-1); color: #fff; }
+  .h-compare .e { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--fg-3); }
+  .h-compare .col-b .e { color: #6FA9FF; }
+  .h-compare h3 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -0.018em; margin: 0; color: var(--ink-1); }
+  .h-compare .col-b h3 { color: #fff; }
+  .h-compare h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-compare .col-b h3 em { color: #6FA9FF; }
+  .h-compare ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-direction: column; }
+  .h-compare li {
+    padding: 12px 0; border-top: 1px solid rgba(7,32,63,0.08);
+    font-size: 14px; line-height: 1.5; color: var(--fg-1);
+    display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start;
+  }
+  .h-compare .col-b li { color: rgba(255,255,255,0.92); border-top-color: rgba(255,255,255,0.14); }
+  .h-compare .col-a li::before { content: ""; width: 10px; height: 1px; background: var(--fg-3); transform: translateY(11px); }
+  .h-compare .col-b li::before { content: "+"; color: #6FA9FF; font-weight: 500; line-height: 1; transform: translateY(2px); }
+  .h-compare .foot {
+    grid-column: 1 / -1;
+    padding: 22px clamp(28px, 3vw, 44px);
+    background: var(--warm-1);
+    border-top: 1px solid rgba(7,32,63,0.08);
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: 18px; color: var(--ink-1);
+  }
+  @media (max-width: 880px) {
+    .h-compare { grid-template-columns: 1fr; }
+    .h-compare .col-a { border-right: 0; border-bottom: 1px solid rgba(7,32,63,0.08); }
+  }
+
+  /* ---------- Q Bio platform — AI/ML block ---------- */
+  .h-platform-ai {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .h-platform-ai .copy {
+    background: var(--ink-1); color: #fff;
+    border-radius: 4px;
+    padding: clamp(28px, 3vw, 40px);
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .h-platform-ai .copy .e {
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: #6FA9FF;
+  }
+  .h-platform-ai .copy h3 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    color: #fff; margin: 0; max-width: 22ch;
+  }
+  .h-platform-ai .copy h3 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
+  .h-platform-ai .copy ul {
+    list-style: none; padding: 0; margin: 6px 0 0;
+    display: flex; flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .h-platform-ai .copy li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.85);
+    display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+  }
+  .h-platform-ai .copy li:last-child { border-bottom: 0; }
+  .h-platform-ai .copy li::before {
+    content: "—"; color: #6FA9FF; line-height: 1.4;
+  }
+  .h-platform-ai .copy li strong { color: #fff; font-weight: 600; }
+
+  .h-platform-ai .fda {
+    margin-top: auto; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.78);
+  }
+  .h-platform-ai .fda .badge {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #6FA9FF;
+    color: #6FA9FF;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+    margin-top: 1px;
+  }
+  .h-platform-ai .fda strong { color: #fff; font-weight: 600; }
+  .h-platform-ai .fda .fn { color: rgba(255,255,255,0.5); display: block; margin-top: 4px; font-size: 11.5px; }
+
+  .h-platform-ai .visual {
+    margin: 0;
+    background: #fff;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .h-platform-ai .visual img {
+    display: block; width: 100%; height: auto; flex: 1;
+    object-fit: cover; max-height: 360px; object-position: center top;
+  }
+  .h-platform-ai .visual figcaption {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(7,32,63,0.08);
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.3px; text-transform: uppercase;
+    color: var(--fg-3);
+    background: var(--bg-1);
+  }
+  .h-platform-ai .visual figcaption strong { color: var(--ink-1); font-weight: 600; }
+  @media (max-width: 880px) { .h-platform-ai { grid-template-columns: 1fr; } }
+
+  /* ---------- Q Bio platform flow (reuse .h-platform from site, light overrides) ---------- */
+  .h-platform {
+    background: var(--warm-1);
+    border: 1px solid rgba(7,32,63,0.08);
+    border-radius: 4px;
+    padding: clamp(32px, 4vw, 64px);
+  }
+  .h-flow {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
+    gap: 0; align-items: stretch;
+  }
+  .h-flow .col {
+    background: #fff;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 8px;
+    padding: 22px 20px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .h-flow .col.dark { background: var(--ink-1); color: #fff; border-color: var(--ink-1); }
+  .h-flow .col .e { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--q-blue); }
+  .h-flow .col.dark .e { color: #6FA9FF; }
+  .h-flow .col h4 { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink-1); letter-spacing: -0.01em; margin: 0; }
+  .h-flow .col.dark h4 { color: #fff; }
+  .h-flow .col p { font-size: 12.5px; color: var(--fg-3); line-height: 1.5; margin: 0; }
+  .h-flow .col.dark p { color: rgba(255,255,255,0.7); }
+  .h-flow .arrow { display: flex; align-items: center; justify-content: center; color: var(--q-blue); }
+  .h-flow .arrow svg { width: 18px; height: 14px; }
+  @media (max-width: 980px) {
+    .h-flow { grid-template-columns: 1fr; gap: 12px; }
+    .h-flow .arrow { transform: rotate(90deg); padding: 2px 0; }
+  }
+
+  /* ---------- Two audience paths ---------- */
+  .h-tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .h-track {
+    background: #fff; border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    padding: clamp(28px, 3.2vw, 44px);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .h-track.dark { background: var(--ink-1); color: #fff; border-color: var(--ink-1); }
+  .h-track .bar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(7,32,63,0.10);
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase;
+  }
+  .h-track.dark .bar { border-bottom-color: rgba(255,255,255,0.18); }
+  .h-track .bar .e { color: var(--q-blue); font-weight: 600; }
+  .h-track.dark .bar .e { color: #6FA9FF; }
+  .h-track .bar .loc { color: var(--fg-3); }
+  .h-track.dark .bar .loc { color: rgba(255,255,255,0.55); }
+  .h-track h3 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--ink-1); margin: 0; max-width: 20ch;
+  }
+  .h-track.dark h3 { color: #fff; }
+  .h-track h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-track.dark h3 em { color: #6FA9FF; }
+  .h-track p { font-size: 14.5px; line-height: 1.55; color: var(--fg-1); margin: 0; max-width: 44ch; }
+  .h-track.dark p { color: rgba(255,255,255,0.78); }
+  .h-track ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; border-top: 1px solid rgba(7,32,63,0.08); }
+  .h-track.dark ul { border-top-color: rgba(255,255,255,0.14); }
+  .h-track li {
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    font-size: 13.5px; color: var(--ink-1); line-height: 1.45;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .h-track.dark li { color: rgba(255,255,255,0.92); border-bottom-color: rgba(255,255,255,0.14); }
+  .h-track li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--q-blue); transform: translateY(7px); }
+  .h-track.dark li::before { background: #6FA9FF; }
+  .h-track li:last-child { border-bottom: 0; }
+  .h-track .ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+  .h-track.dark .q-btn.primary {
+    background: #fff !important; color: var(--ink-1) !important; border-color: #fff !important;
+  }
+  .h-track .ctas .sec {
+    font-size: 14px; color: var(--ink-1);
+    border-bottom: 1px solid rgba(7,32,63,0.25);
+    padding: 0 2px; line-height: 1.8;
+  }
+  .h-track .ctas .sec:hover { color: var(--q-blue); border-color: var(--q-blue); }
+  .h-track.dark .ctas .sec { color: rgba(255,255,255,0.9); border-bottom-color: rgba(255,255,255,0.35); }
+  .h-track.dark .ctas .sec:hover { color: #fff; border-color: #fff; }
+  @media (max-width: 980px) { .h-tracks { grid-template-columns: 1fr; } }
+
+  /* ---------- Dashboard showcase (big product moment) ---------- */
+  .h-dash {
+    background: var(--ink-1);
+    color: #fff;
+    border-radius: 4px;
+    padding: clamp(40px, 5vw, 72px) clamp(28px, 4vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: clamp(32px, 4vw, 64px);
+    align-items: center;
+    border: 1px solid var(--ink-1);
+  }
+  .h-dash .e { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #6FA9FF; }
+  .h-dash h3 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(28px, 3.4vw, 46px);
+    line-height: 1.06; letter-spacing: -0.022em;
+    color: #fff; margin: 18px 0 0; max-width: 18ch;
+  }
+  .h-dash h3 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
+  .h-dash p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.78); margin: 16px 0 0; max-width: 52ch; }
+  .h-dash .definition {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-left: 2px solid #6FA9FF;
+    background: rgba(111,169,255,0.08);
+    font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.92);
+  }
+  .h-dash .definition strong { color: #fff; font-weight: 600; }
+  .h-dash .ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-top: 26px; }
+  .h-dash .ctas .sec {
+    color: rgba(255,255,255,0.92);
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding: 0 2px; line-height: 1.8; font-size: 14px;
+  }
+  .h-dash .ctas .sec:hover { color: #fff; border-color: #fff; }
+  .h-dash .ctas .q-btn.primary {
+    background: #fff !important; color: var(--ink-1) !important; border-color: #fff !important;
+  }
+
+  /* Big dashboard mockup — anatomy column + chart + system grid */
+  .h-dash-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.5);
+    color: var(--ink-1);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .h-dash-card .top {
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+    background: var(--bg-1);
+  }
+  .h-dash-card .top .l { display: flex; align-items: center; gap: 10px; }
+  .h-dash-card .top .l .av {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--ink-1); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+  }
+  .h-dash-card .top .l .id { font-size: 12.5px; color: var(--ink-1); font-weight: 600; }
+  .h-dash-card .top .l .id .sub { color: var(--fg-3); font-weight: 500; margin-left: 6px; font-family: var(--font-mono); font-size: 10.5px; }
+  .h-dash-card .top .r { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3); letter-spacing: 1.2px; text-transform: uppercase; }
+  .h-dash-card .body {
+    display: grid; grid-template-columns: 0.85fr 1.5fr;
+    min-height: 460px;
+  }
+  .h-dash-card .anatomy {
+    background: linear-gradient(180deg, var(--bg-1), #fff);
+    border-right: 1px solid rgba(7,32,63,0.06);
+    padding: 18px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .h-dash-card .anatomy .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--fg-3); }
+  .h-dash-card .anatomy .figure {
+    flex: 1; min-height: 280px;
+    background:
+      repeating-linear-gradient(135deg, rgba(7,32,63,0.04) 0 2px, transparent 2px 14px),
+      var(--warm-1);
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid rgba(7,32,63,0.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .h-dash-card .anatomy .figure .cap {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--fg-3); text-align: center; line-height: 1.6;
+    padding: 8px 12px; background: rgba(255,255,255,0.85); border-radius: 4px;
+  }
+  .h-dash-card .anatomy .pin {
+    position: absolute; width: 10px; height: 10px; border-radius: 50%;
+    background: var(--q-blue); transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 5px rgba(15,117,255,0.15);
+  }
+  .h-dash-card .anatomy .pin::before { content: ""; position: absolute; inset: 3px; background: #fff; border-radius: 50%; }
+  .h-dash-card .main { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 18px; }
+  .h-dash-card .row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(7,32,63,0.06);
+  }
+  .h-dash-card .stat .l { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--fg-3); }
+  .h-dash-card .stat .v { font-family: 'Fraunces', serif; font-weight: 300; font-size: 28px; letter-spacing: -0.018em; color: var(--ink-1); line-height: 1; margin-top: 6px; }
+  .h-dash-card .stat .v .u { font-size: 11px; color: var(--fg-3); font-weight: 500; margin-left: 4px; font-family: var(--font-display); }
+  .h-dash-card .stat .d { font-family: var(--font-mono); font-size: 10px; color: var(--c-green-text); margin-top: 4px; }
+  .h-dash-card .stat .d.amber { color: var(--c-yellow-text); }
+  .h-dash-card .chartblock { display: flex; flex-direction: column; gap: 10px; }
+  .h-dash-card .chartblock .heading { display: flex; justify-content: space-between; align-items: baseline; }
+  .h-dash-card .chartblock .heading .t { font-size: 13px; color: var(--ink-1); font-weight: 600; letter-spacing: -0.005em; }
+  .h-dash-card .chartblock .heading .y { font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); letter-spacing: 1.2px; text-transform: uppercase; }
+  .h-dash-card .chart {
+    height: 150px;
+    background:
+      linear-gradient(180deg, rgba(15,117,255,0.07), rgba(15,117,255,0)),
+      repeating-linear-gradient(0deg, rgba(7,32,63,0.04) 0 1px, transparent 1px 30px);
+    border-radius: 6px;
+    border: 1px solid rgba(7,32,63,0.06);
+    position: relative;
+  }
+  .h-dash-card .chart svg { width: 100%; height: 100%; display: block; }
+  .h-dash-card .scale { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9.5px; color: var(--fg-3); letter-spacing: 0.8px; }
+  .h-dash-card .systems {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: rgba(7,32,63,0.06);
+    border: 1px solid rgba(7,32,63,0.06);
+    border-radius: 6px; overflow: hidden;
+  }
+  .h-dash-card .systems > div { background: #fff; padding: 12px 12px; }
+  .h-dash-card .systems .nm { font-size: 11.5px; color: var(--ink-1); font-weight: 600; }
+  .h-dash-card .systems .st { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--fg-3); margin-top: 4px; }
+  .h-dash-card .systems .st::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #20C085; }
+  .h-dash-card .systems .st.amber::before { background: #EBB513; }
+
+  @media (max-width: 980px) { .h-dash { grid-template-columns: 1fr; } .h-dash-card .body { grid-template-columns: 1fr; } .h-dash-card .anatomy { border-right: 0; border-bottom: 1px solid rgba(7,32,63,0.06); } }
+  @media (max-width: 600px) { .h-dash-card .systems { grid-template-columns: repeat(2, 1fr); } .h-dash-card .row { grid-template-columns: 1fr 1fr; } }
+
+  /* ---------- Partner proof ---------- */
+  .h-proof {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .h-proof .photo {
+    background: #B5A48F url('assets/telus-health-calgary.jpg') center/cover no-repeat;
+    min-height: 380px;
+    position: relative;
+  }
+  .h-proof .photo .stamp {
+    position: absolute; top: 20px; left: 20px;
+    background: rgba(255,255,255,0.95); padding: 7px 12px;
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--ink-1); font-weight: 500;
+  }
+  .h-proof .photo .partner-logo {
+    position: absolute; top: 24px; left: 24px;
+    background: rgba(255,255,255,0.96);
+    padding: 14px 22px;
+    border-radius: 6px;
+    height: 76px;
+    width: auto;
+    max-width: 70%;
+    object-fit: contain;
+    box-shadow: 0 12px 32px -12px rgba(7,16,30,0.35);
+    backdrop-filter: blur(4px);
+  }
+  @media (max-width: 880px) {
+    .h-proof .photo .partner-logo { height: 56px; padding: 10px 16px; top: 16px; left: 16px; }
+  }
+  .h-proof .copy { padding: clamp(28px, 3.6vw, 52px); display: flex; flex-direction: column; gap: 22px; justify-content: center; }
+  .h-proof .e { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3); letter-spacing: 1.4px; text-transform: uppercase; }
+  .h-proof h3 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink-1); margin: 0; max-width: 22ch; }
+  .h-proof h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .h-proof p { font-size: 14.5px; line-height: 1.6; color: var(--fg-1); margin: 0; }
+  .h-proof .link {
+    font-size: 13.5px; color: var(--ink-1);
+    display: inline-flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(7,32,63,0.25);
+    align-self: flex-start; padding: 0 2px; line-height: 1.8;
+  }
+  .h-proof .link:hover { color: var(--q-blue); border-color: var(--q-blue); }
+  .h-proof .link svg { width: 12px; height: 12px; }
+  @media (max-width: 880px) { .h-proof { grid-template-columns: 1fr; } .h-proof .photo { min-height: 240px; } }
+
+  /* ---------- Company roots — logos band ---------- */
+  .h-roots { padding-top: 8px; }
+  .h-roots .h-h { padding-top: 40px; }
+  .h-logos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border: 1px solid rgba(7,32,63,0.08);
+    border-radius: 4px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .h-logos > div {
+    padding: 22px 16px;
+    border-right: 1px solid rgba(7,32,63,0.06);
+    border-bottom: 1px solid rgba(7,32,63,0.06);
+    text-align: center;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 88px;
+  }
+  .h-logos > div img {
+    max-width: 100%; max-height: 30px; width: auto; height: auto;
+    object-fit: contain; filter: grayscale(1) contrast(0.95); opacity: 0.72;
+    transition: filter .25s ease, opacity .25s ease;
+  }
+  .h-logos > div:hover img { filter: none; opacity: 1; }
+  .h-logos > div:nth-child(6n) { border-right: 0; }
+  .h-logos > div:nth-last-child(-n+6) { border-bottom: 0; }
+  @media (max-width: 880px) {
+    .h-logos { grid-template-columns: repeat(3, 1fr); }
+    .h-logos > div:nth-child(6n) { border-right: 1px solid rgba(7,32,63,0.06); }
+    .h-logos > div:nth-child(3n) { border-right: 0; }
+    .h-logos > div:nth-last-child(-n+6) { border-bottom: 1px solid rgba(7,32,63,0.06); }
+    .h-logos > div:nth-last-child(-n+3) { border-bottom: 0; }
+  }
+
+  /* ---------- Final split CTA ---------- */
+  .h-final {
+    background: var(--ink-1);
+    color: #fff;
+    border-radius: 4px;
+    padding: clamp(56px, 8vw, 112px) clamp(28px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
+  .h-final h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.02; letter-spacing: -0.025em;
+    color: #fff; margin: 0; max-width: 16ch;
+  }
+  .h-final h2 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
+  .h-final p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 22px 0 0; max-width: 46ch; }
+  .h-final-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+  .h-final-actions .q-btn { justify-content: space-between; width: 100%; height: 56px; padding: 0 22px; font-size: 14.5px; letter-spacing: -0.005em; }
+  .h-final-actions .q-btn .arr { width: 18px; height: 18px; }
+  .h-final-actions .q-btn.primary { background: #fff !important; color: var(--ink-1) !important; border-color: #fff !important; }
+  .h-final-actions .q-btn.outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+  .h-final-actions .q-btn.outline:hover { border-color: #fff; }
+  .h-final-actions .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; }
+  @media (max-width: 880px) { .h-final { grid-template-columns: 1fr; } }
+
+  /* ---------- Section padding override ---------- */
+  .q-section { padding: 0 var(--pad) clamp(56px, 7vw, 112px); }
+  .q-wrap { max-width: var(--max); margin: 0 auto; }
+
+  /* ---------- Findings that change care ---------- */
+  .find-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(7,32,63,0.10);
+    background: rgba(7,32,63,0.06);
+    border-radius: 4px; overflow: hidden;
+  }
+  .find-grid > article {
+    background: #fff;
+    padding: clamp(28px, 2.8vw, 40px);
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 320px;
+  }
+  .find-grid > article.dark { background: var(--ink-1); color: #fff; }
+  .find-grid .kind {
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--q-blue);
+  }
+  .find-grid .dark .kind { color: #6FA9FF; }
+  .find-stat .big {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(80px, 10vw, 148px);
+    line-height: 0.9; letter-spacing: -0.04em;
+    color: var(--q-blue);
+    margin: 4px 0 0;
+    font-feature-settings: 'ss01';
+  }
+  .find-stat .big .pct { font-size: 0.55em; color: var(--fg-3); margin-left: 4px; letter-spacing: -0.02em; }
+  .find-stat .big .ph {
+    font-family: var(--font-mono); font-size: 0.18em;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--fg-3); display: inline-block; vertical-align: middle;
+    padding: 4px 8px; border: 1px dashed rgba(7,32,63,0.25); border-radius: 4px;
+    margin-left: 12px;
+  }
+  .find-stat p {
+    margin: 0; font-size: 15px; line-height: 1.55; color: var(--fg-1);
+    max-width: 38ch;
+  }
+  .find-stat .src {
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px solid rgba(7,32,63,0.08);
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .find-quote blockquote {
+    margin: 0; padding: 0;
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(20px, 1.6vw, 23px);
+    line-height: 1.3; letter-spacing: -0.012em;
+    color: var(--ink-1);
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .find-quote.dark blockquote { color: #fff; }
+  .find-quote blockquote::before {
+    content: "\201C";
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: 2.2em; color: var(--q-blue);
+    display: block; line-height: 0.5; margin-bottom: 14px;
+  }
+  .find-quote.dark blockquote::before { color: #6FA9FF; }
+  .find-quote .who {
+    margin-top: auto; padding-top: 16px;
+    border-top: 1px solid rgba(7,32,63,0.08);
+    display: grid; grid-template-columns: 40px 1fr; gap: 12px;
+    align-items: center;
+  }
+  .find-quote.dark .who { border-top-color: rgba(255,255,255,0.14); }
+  .find-quote .av {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--bg-1) center/cover no-repeat;
+    border: 1px solid rgba(7,32,63,0.08);
+  }
+  .find-quote.dark .av { border-color: rgba(255,255,255,0.14); }
+  .find-quote .av.initials {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    color: var(--fg-3); background: var(--bg-1);
+  }
+  .find-quote.dark .av.initials { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
+  .find-quote .nm {
+    display: block; font-size: 13.5px; color: var(--ink-1); font-weight: 600;
+    line-height: 1.3;
+  }
+  .find-quote.dark .nm { color: #fff; }
+  .find-quote .ti {
+    display: block; font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 1.2px; text-transform: uppercase; color: var(--fg-3);
+    margin-top: 4px;
+  }
+  .find-quote.dark .ti { color: rgba(255,255,255,0.5); }
+  .find-quote .pending {
+    margin-top: 6px;
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--fg-3);
+    padding: 3px 8px; background: rgba(7,32,63,0.04); border-radius: 999px;
+    display: inline-block; align-self: flex-start;
+  }
+  .find-quote.dark .pending { color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.07); }
+  @media (max-width: 980px) { .find-grid { grid-template-columns: 1fr; } }
+  /* =====================================================================
+     HERO — full-bleed video background
+     Video fills 100vh desktop, min 85vh mobile. Overlay text bottom-left.
+     ===================================================================== */
+  .hb-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 600px;
+    background: var(--ink-1);
+    overflow: hidden;
+    color: var(--warm-1);
+    padding: 0;
+  }
+  .hb-hero-video {
+    position: absolute; inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    /* Warm tone matched to the clip — paints instantly under the poster while
+       the JPEG decodes, so the hero never flashes the cream body background. */
+    background-color: #2a2018;
+  }
+  .hb-hero-video > video,
+  .hb-hero-video > img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    background-color: #2a2018;
+  }
+  /* Legibility gradient — q.bio navy, not pure black, so the warm palette survives.
+     Top band sits behind the transparent topbar; tail darkens the bottom for caption legibility. */
+  .hb-hero-gradient {
+    position: absolute; inset: 0;
+    z-index: 1; pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(10,31,61,0.42) 0%,
+      rgba(10,31,61,0.22) 90px,
+      rgba(10,31,61,0.06) 22%,
+      rgba(10,31,61,0.32) 60%,
+      rgba(10,31,61,0.66) 100%);
+  }
+  .hb-hero-overlay {
+    position: absolute; z-index: 2;
+    left: clamp(24px, 5vw, 80px);
+    right: clamp(24px, 5vw, 80px);
+    bottom: clamp(64px, 8vw, 104px);
+    max-width: 720px;
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    color: var(--warm-1);
+  }
+  .hb-hero-overlay .hb-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--warm-1); opacity: 0.85;
+    margin-bottom: 22px;
+  }
+  .hb-hero-overlay .hb-eyebrow .sep { color: rgba(242,237,227,0.45); }
+  .hb-hero-overlay .hb-eyebrow .meta { color: rgba(242,237,227,0.85); }
+  .hb-hero-overlay h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6.4vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--warm-1);
+    max-width: 22ch;
+    text-wrap: balance;
+    font-feature-settings: 'ss01';
+    text-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  }
+  .hb-hero-overlay h1 em {
+    font-style: normal;
+    color: var(--q-blue);
+    font-weight: inherit;
+  }
+  .hb-hero-overlay .sub {
+    margin: 22px 0 0;
+    max-width: 56ch;
+    font-family: var(--font-display);
+    font-size: clamp(15.5px, 1.15vw, 17.5px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--warm-1);
+    opacity: 0.88;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.20);
+  }
+  .hb-hero-overlay .hb-ctas {
+    margin-top: 28px;
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .hb-hero-overlay .q-btn.primary {
+    background: #fff !important;
+    color: var(--ink-1) !important;
+    border-color: #fff !important;
+  }
+  .hb-hero-overlay .q-btn.primary:hover { filter: brightness(0.94); }
+  .hb-hero-overlay .q-btn.translucent {
+    background: rgba(255,255,255,0.18) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    -webkit-backdrop-filter: saturate(140%) blur(6px);
+    backdrop-filter: saturate(140%) blur(6px);
+    transition: background .2s ease, backdrop-filter .2s ease, -webkit-backdrop-filter .2s ease;
+  }
+  .hb-hero-overlay .q-btn.translucent:hover {
+    background: rgba(255,255,255,0.30) !important;
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    backdrop-filter: saturate(160%) blur(12px);
+  }
+  .hb-hero-overlay .hb-secondary {
+    margin: 28px 0 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: rgba(242,237,227,0.72);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.20);
+  }
+
+  /* Soft scroll indicator, bottom center */
+  .hb-hero-scroll {
+    position: absolute;
+    left: 50%; bottom: clamp(18px, 2.4vw, 28px);
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.78);
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .hb-hero-scroll:hover { color: #fff; }
+  .hb-hero-scroll .chev {
+    width: 18px; height: 18px;
+    animation: heroChev 1.8s ease-in-out infinite;
+  }
+  @keyframes heroChev {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(4px); opacity: 1; }
+  }
+
+  @media (max-width: 720px) {
+    .hb-hero { height: 85vh; min-height: 540px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hb-hero-scroll .chev { animation: none; }
+  }
+
+  /* ---------- Trust strip (marquee) ---------- */
+  .h-trust-logos {
+    position: relative;
+    overflow: hidden;
+    padding-top: 8px;
+    /* soft fade in/out at edges so logos drift on/off calmly */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .h-trust-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: clamp(56px, 8vw, 120px);
+    padding-right: clamp(56px, 8vw, 120px); /* match gap so loop seam is invisible */
+    animation: h-trust-marquee 42s linear infinite;
+    will-change: transform;
+  }
+  .h-trust-logos:hover .h-trust-track { animation-play-state: paused; }
+  .h-trust-track > div {
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 40px;
+  }
+  .h-trust-track img {
+    max-height: 36px; width: auto; height: auto;
+    object-fit: contain;
+    filter: grayscale(1) contrast(0.95);
+    opacity: 0.7;
+    transition: filter .25s, opacity .25s;
+  }
+  .h-trust-track > div:hover img { filter: none; opacity: 1; }
+  @keyframes h-trust-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .h-trust-track { animation: none; }
+  }
+
+  /* ---------- Trust strip — TELUS partner-proof note ---------- */
+  .hb-trust-note {
+    grid-column: 1 / -1;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(7,32,63,0.08);
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.3px; text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .hb-trust-note strong { color: var(--ink-1); font-weight: 500; }
+  .hb-trust-note .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--q-blue); display: inline-block; }
+  .hb-trust-note a {
+    color: var(--q-blue);
+    border-bottom: 1px solid rgba(15,117,255,0.3);
+    padding-bottom: 1px;
+  }
+  .hb-trust-note a:hover { color: var(--q-blue-hover, var(--q-blue)); border-bottom-color: currentColor; }
+
+  /* ---------- Slim platform callout (replaces full platform section) ---------- */
+  .h-platform-callout {
+    margin-top: 18px;
+    background: var(--ink-1);
+    color: #fff;
+    border-radius: 4px;
+    padding: clamp(20px, 2.4vw, 28px) clamp(20px, 2.4vw, 32px);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: center;
+  }
+  .h-platform-callout .badge {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1.5px solid #6FA9FF; color: #6FA9FF;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    flex: none;
+  }
+  .h-platform-callout p {
+    margin: 0; font-size: 14px; line-height: 1.55;
+    color: rgba(255,255,255,0.84); max-width: 90ch;
+  }
+  .h-platform-callout p strong { color: #fff; font-weight: 600; }
+  .h-platform-callout p .e {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px;
+    text-transform: uppercase; color: #6FA9FF; display: block; margin-bottom: 4px;
+  }
+  .h-platform-callout a.link {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    padding-bottom: 3px; white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .h-platform-callout a.link:hover { color: #6FA9FF; border-color: #6FA9FF; }
+  @media (max-width: 720px) { .h-platform-callout { grid-template-columns: 1fr; } }
+
+  /* ---------- Trust band (below hero) ---------- */
+  .h-trust-band {
+    padding: clamp(22px, 3vw, 38px) var(--pad) !important;
+    background: var(--warm-1);
+    border-bottom: 1px solid rgba(7,32,63,0.08);
+  }
+  .h-trust-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: clamp(12px, 2vw, 24px);
+    justify-content: center;
+  }
+  .h-trust-list > li:not(.h-trust-sep) {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 14px; line-height: 1.3; color: var(--ink-1); font-weight: 400;
+  }
+  .h-trust-list > li strong { font-weight: 600; }
+  .h-trust-list svg { flex: none; color: var(--q-blue); }
+  .h-trust-sep {
+    width: 1px; height: 18px;
+    background: rgba(7,32,63,0.14); flex: none;
+  }
+  .h-trust-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 2px 7px;
+    background: var(--q-blue); color: #fff;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    border-radius: 3px; flex: none;
+  }
+  @media (max-width: 720px) {
+    .h-trust-list { justify-content: flex-start; gap: 12px 20px; }
+    .h-trust-sep { display: none; }
+    .h-trust-list > li:not(.h-trust-sep) { font-size: 13.5px; }
+  }
+
+  /* ---------- Card hover elevations ---------- */
+  .h-stats > article {
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .h-stats > article:hover {
+    background: #FAFCFF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px -10px rgba(7,32,63,0.14);
+    position: relative; z-index: 1;
+  }
+  .h-incl > article {
+    transition: background .2s ease;
+  }
+  .h-incl > article:hover { background: #FAFCFF; }
+
+  /* ---------- 5-card grid: 2-column at mid-range (560–880px) ---------- */
+  @media (min-width: 560px) and (max-width: 880px) {
+    .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
+    .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2 !important; }
+    .h-incl.is-five > article:nth-child(n+4)  { grid-column: span 3 !important; }
+  }
+
+  /* ---------- Section 04 physician quote ---------- */
+  .dash-quote {
+    margin-top: 24px;
+    padding: clamp(28px, 2.8vw, 40px);
+    background: var(--ink-1);
+    border-radius: 6px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .dash-quote .kind {
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: #6FA9FF;
+  }
+  .dash-quote blockquote {
+    margin: 0;
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.3; letter-spacing: -0.015em;
+    color: #fff; max-width: 56ch;
+  }
+  .dash-quote .who {
+    display: flex; gap: 12px; align-items: center;
+    padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .dash-quote .who img {
+    width: 48px; height: 48px; border-radius: 50%;
+    object-fit: cover; border: 1px solid rgba(255,255,255,0.18); flex: none;
+  }
+  .dash-quote .who .nm {
+    display: block; font-size: 13.5px; color: #fff; font-weight: 600; line-height: 1.3;
+  }
+  .dash-quote .who .ti {
+    display: block; font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); margin-top: 4px;
+  }
+  .dash-cta-row {
+    margin-top: 24px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  }
+
+</style>
+<noscript><style>.fade-up{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+
+<body class="has-hero-overlay">
+<a class="q-skip" href="index.html#main">Skip to main content</a>
+<!-- ======================= TOPBAR ======================= -->
+<header class="q-top">
+  <div class="q-top-inner">
+    <a aria-label='Q Bio home' class='q-brand' href='index.html'>
+      <span class="chip">
+        <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
+      </span>
+      <span class="wm">Q<span class="dot"> </span>Bio</span>
+    </a>
+    <nav class="q-nav" aria-label="Primary">
+      <a href='https://q.bio/q-exam'>Q Exam</a>
+      <a href='https://q.bio/dashboard'>Q Bio Health Dashboard</a>
+      <a href='https://q.bio/partners'>Partners</a>
+      <a href='https://q.bio/about'>About</a>
+    </nav>
+    <div class="q-actions">
+      <a class='ghost' href='https://q.bio/partners-contact'>Partner with Q Bio</a>
+      <a class="ghost" href="https://dashboard.q.bio/">Login</a>
+      <a class='q-btn primary sm' href='https://q.bio/book'>Book the Q Exam
+      </a>
+    </div>
+    <button class="q-menu-btn" aria-label="Open menu" data-menu-open>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="q-drawer" data-drawer aria-hidden="true">
+  <div class="q-drawer-panel" role="dialog" aria-label="Menu">
+    <button class="close" aria-label="Close menu" data-menu-close>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a href='https://q.bio/q-exam'>Q Exam</a>
+    <a href='https://q.bio/dashboard'>Q Bio Health Dashboard</a>
+    <a href='https://q.bio/partners'>Partners</a>
+    <a href='https://q.bio/about'>About</a>
+    <div class="actions">
+      <a class='q-btn primary' href='https://q.bio/book'>Book the Q Exam
+      </a>
+      <a class='q-btn outline' href='https://q.bio/partners-contact'>Partner with Q Bio</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ======================= HERO (full-bleed video) ======================= -->
+<section class="hb-hero" data-screen-label="01 Hero" aria-labelledby="hero-heading">
+  <div class="hb-hero-video" data-hero-video aria-hidden="true">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/clinic-hero-poster.jpg">
+      <source src="assets/videos/clinic-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hb-hero-gradient" aria-hidden="true"></div>
+
+  <div class="hb-hero-overlay">
+    <span class="hb-eyebrow">
+      <span>Q Bio</span>
+      <span class="sep">·</span>
+      <span class="meta">The longitudinal physical exam</span>
+    </span>
+    <h1 id="hero-heading" >The physical exam, <em style="font-style: normal; color: rgb(246, 242, 236);">rebuilt around your biology.</em></h1>
+    <p class="sub">Whole-body MRI, biomarkers, genetics, wearable data, medical history, and physician review, captured as a comprehensive baseline, then compared against every visit after.</p>
+
+    <div class="hb-ctas">
+      <a class='q-btn primary lg' href='https://q.bio/book'>Book the Q Exam
+      </a>
+      <a class='q-btn translucent lg' href='https://q.bio/partners'>Partner with Q Bio</a>
+    </div>
+  </div>
+
+  <a class="hb-hero-scroll" href="index.html#trust" aria-label="Scroll to content">
+    <span>Scroll</span>
+    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </a>
+</section>
+
+<!-- ======================= TRUST BAND ======================= -->
+<section id="trust" class="q-section h-trust-band" aria-label="Why trust Q Bio">
+  <div class="q-wrap">
+    <ul class="h-trust-list">
+      <li>
+        <span class="h-trust-badge" aria-hidden="true">FDA</span>
+        <span><strong>FDA-cleared</strong> software (Constellation)</span>
+      </li>
+      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Redwood City, CA &middot; partner clinics</span>
+      </li>
+      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>No ionizing radiation</span>
+      </li>
+      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+        <span>Physician review, every exam</span>
+      </li>
+      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
+      <li>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Founded 2015</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= WHAT IS Q BIO ======================= -->
+<section id="about" class="q-section h-about" data-screen-label="01 What is Q Bio" aria-labelledby="about-heading">
+  <div class="q-wrap">
+
+    <!-- Section header -->
+    <div class="h-h fade-up">
+      <span class="num">01 · The company</span>
+      <div>
+        <h2 id="about-heading">Q Bio. <em>Quantitative biology</em> for preventive care.</h2>
+      </div>
+    </div>
+
+    <!-- Mission — full-width paragraph -->
+    <div class="h-about-sub h-about-mission fade-up">
+      <span class="se">Mission</span>
+      <p>Q Bio was founded in 2015 to close the gap between what modern medicine can measure and what the annual physical actually captures. The Q Exam does it in one visit: whole-body MRI, 120+ blood biomarkers, genetics, wearable data, and a 45-minute physician review — stored in one record that gets more useful with every exam after.</p>
+    </div>
+
+    <!-- Two-column split: anatomy figure + What the Q Exam delivers -->
+    <div class="h-about-split fade-up">
+      <figure class="h-about-fig">
+        <img src="assets/body-system-map.png" alt="AI-segmented whole-body anatomy from a Q Exam MRI, color-coded by organ system." loading="lazy">
+        <figcaption><strong>AI-segmented anatomy</strong> &middot; whole-body MRI</figcaption>
+      </figure>
+
+      <div class="h-about-pillars">
+        <div class="h-about-points">
+          <header><span class="se">What the Q Exam delivers</span></header>
+          <article>
+            <span class="e">Quantitative biology</span>
+            <h3>Organs, tissues, blood, and genes — measured in numbers, not impressions.</h3>
+          </article>
+          <article>
+            <span class="e">For your care team</span>
+            <h3>Structured findings your physician receives and can act on, not another PDF to forward.</h3>
+          </article>
+          <article>
+            <span class="e">A longitudinal record</span>
+            <h3>Every finding stored in one record, compared against every future exam.</h3>
+          </article>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================= WHY IT MATTERS ======================= -->
+<section class="q-section" data-screen-label="02 Why it matters">
+  <div class="q-wrap">
+    <div class="h-h fade-up">
+      <span class="num">02 · Why it matters</span>
+      <div>
+        <h2>Physical exams today were designed for an era when health was episodic. Health today is longitudinal.</h2>
+        <p>Annual physicals were built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
+      </div>
+    </div>
+
+    <div class="h-stats fade-up">
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/></svg>
+        </span>
+        <span class="v">5<span class="u">inputs</span></span>
+        <h3>Captured together at baseline</h3>
+        <p>MRI, biomarkers, genetics, wearables, and physician review, in one visit, not five appointments.</p>
+      </article>
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l7 4-7 4-7-4 7-4z"/><path d="M3 11l7 4 7-4"/></svg>
+        </span>
+        <span class="v">1<span class="u">record</span></span>
+        <h3>Read as one record</h3>
+        <p>Multimodal findings interpreted in context, not as five disconnected reports living in separate portals.</p>
+      </article>
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11M11 4l3 3-3 3"/><path d="M17 13H6M9 16l-3-3 3-3"/></svg>
+        </span>
+        <span class="v">YoY<span class="u">compared</span></span>
+        <h3>Every exam is a comparison</h3>
+        <p>The first Q Exam sets the baseline. Each one after is read against the member's own prior measurements.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section class="q-section h-howit" data-screen-label="03 How it works" aria-labelledby="howit-heading">
+  <div class="q-wrap">
+    <div class="h-h fade-up">
+      <span class="num">03 · How it works</span>
+      <div>
+        <h2 id="howit-heading">Our AI measures more. Your care team tells you what it means.</h2>
+        <p class="sub"><strong>Constellation</strong>, Q Bio&rsquo;s FDA-cleared image-analysis software, sees the MRI as data, segmenting organs and tissues, quantifying key measurements, and organizing results for radiologist and physician review. Every result lives in the <strong>Q Bio Health Dashboard</strong>, the longitudinal record that makes every future exam comparable to this one. A 45-minute physician consult walks you through it; you take the full record to your own physician.</p>
+      </div>
+    </div>
+
+    <div class="h-incl is-five">
+      <article class="fade-up">
+        <span class="num">01</span>
+        <h3>Whole-body MRI</h3>
+        <p>Non-contrast imaging of major organs and tissues. No ionizing radiation.</p>
+      </article>
+      <article class="fade-up delay-1">
+        <span class="num">02</span>
+        <h3>Blood biomarkers</h3>
+        <p>120+ markers: cardiovascular, metabolic, hepatic, renal, hormonal, inflammatory.</p>
+      </article>
+      <article class="fade-up delay-2">
+        <span class="num">03</span>
+        <h3>Genetics</h3>
+        <p>163 risk-relevant genes, captured once and referenced longitudinally.</p>
+      </article>
+      <article class="fade-up delay-3">
+        <span class="num">04</span>
+        <h3>Wearable &amp; prior records</h3>
+        <p>Connected-device signals and historical data, integrated alongside in-clinic measurements.</p>
+      </article>
+      <article class="fade-up delay-4">
+        <span class="num">05</span>
+        <h3>Physician review</h3>
+        <p>A board-certified Q Bio physician interprets the full record in a 45-minute Data Review.</p>
+      </article>
+    </div>
+
+    <aside class="h-platform-callout fade-up" aria-label="FDA-cleared Constellation platform">
+      <span class="badge" aria-hidden="true">FDA</span>
+      <p>
+        <span class="e">Platform · FDA-cleared</span>
+        <strong>The Q Bio MRI platform incorporates FDA-cleared image-analysis software (Constellation),</strong> which segments lung, liver, brain, and other anatomical regions for the reviewing physician. Findings are organized inside the Q Bio Health Dashboard and shared with the member&rsquo;s primary care team.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ======================= INSIDE THE DASHBOARD (merged: was 07 + 08) ======================= -->
+<section class="q-section" data-screen-label="04 Inside the Dashboard">
+  <div class="q-wrap">    <div class="h-h fade-up">
+      <span class="num">04 &middot; Inside the Dashboard</span>
+      <div>
+        <h2>The exam captures the data. <em>The dashboard makes it visible.</em></h2>
+        <p>A look inside the Q Bio Health Dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="dash-annot">
+        <figure class="dash-annot-frame" aria-label="Q Bio Health Dashboard — annotated patient overview">
+          <figcaption class="chrome">
+            <span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="label">Q Bio Health Dashboard · sample patient view</span>
+            <span class="stamp">Annotated</span>
+          </figcaption>
+          <div class="dash-annot-stage">
+            <img src="assets/dashboard/01-overview.jpg" alt="Q Bio Health Dashboard patient overview." width="1800" height="982" loading="lazy">
+          </div>
+        </figure>
+
+        <aside class="dash-annot-legend" aria-label="What the Dashboard surfaces">
+          <div class="legend-head">
+            <span>What the Dashboard surfaces</span>
+            <span class="e">High-level view</span>
+          </div>
+
+          <article class="dash-card">
+            <div class="body">
+              <span class="e">Subsystem views</span>
+              <p>Findings organized by body system: nervous, circulatory, digestive, musculoskeletal, and more.</p>
+            </div>
+          </article>
+
+          <article class="dash-card">
+            <div class="body">
+              <span class="e">Key radiology findings</span>
+              <p>Whole-body MRI findings interpreted by a Q Bio radiologist and surfaced at the top of the record.</p>
+            </div>
+          </article>
+
+          <article class="dash-card">
+            <div class="body">
+              <span class="e">MRI measurements</span>
+              <p>Quantitative measurements extracted from imaging and tracked year-over-year against the member&rsquo;s own baseline.</p>
+            </div>
+          </article>
+
+          <article class="dash-card flag">
+            <div class="body">
+              <span class="e">Flagged results for follow-up</span>
+              <p>Out-of-range biomarkers and new findings routed to the physician follow-up plan and shareable with the member&rsquo;s care team.</p>
+            </div>
+          </article>
+        </aside>
+      </div>
+
+      <aside class="dash-quote fade-up">
+        <span class="kind">Physician &middot; Q Bio</span>
+        <blockquote>At a first Q Exam, something unexpected is common. We routinely surface findings that change a member&rsquo;s preventive plan &mdash; incidental findings, out-of-range biomarkers, or structural changes that only become visible when you look with this level of detail.</blockquote>
+        <div class="who">
+          <img src="assets/team/garry-choy.png" alt="Garry Choy, MD/MBA" width="48" height="48" loading="lazy">
+          <div>
+            <span class="nm">Garry Choy, MD/MBA</span>
+            <span class="ti">Co-founder &middot; Q Bio</span>
+          </div>
+        </div>
+      </aside>
+
+      <div class="dash-cta-row">
+        <a class='q-btn primary' href='https://q.bio/dashboard'>See the full Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FINAL SPLIT CTA ======================= -->
+<section class="q-section" data-screen-label="05 Final CTA">
+  <div class="q-wrap">
+    <article class="h-final fade-up">
+      <div>
+        <h2>One exam. <em>A foundation</em> for the next decade of care.</h2>
+        <p>Whether you want to offer the Q Exam to your members or patients or start your own baseline, both paths begin here.</p>
+      </div>
+      <div class="h-final-actions">
+        <a class='q-btn primary lg' href='https://q.bio/partners-contact'>
+          <span>Partner with Q Bio</span>
+        </a>
+        <a class='q-btn outline lg' href='https://q.bio/book'>
+          <span>Book the Q Exam</span>
+        </a>
+        <span class="meta">Or email <a href="mailto:hello@q.bio" style="color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.3);">hello@q.bio</a></span>
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="q-foot">
+  <div class="q-foot-inner" style="grid-template-columns: 1.4fr 1fr 1fr 1fr;">
+    <div>
+      <a aria-label='Q Bio home' class='q-brand' href='index.html'>
+        <span class="chip">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
+        </span>
+        <span class="wm">Q<span class="dot"> </span>Bio</span>
+      </a>
+      <p class="sub">Q Bio is a health technology company that delivers the Q Exam and the Q Bio Health Dashboard — directly at our Redwood City clinic and through enterprise partners.</p>
+      <p class="sub">Redwood City, CA · <a href='https://q.bio/clinic'>Visit our clinic →</a><br><a href="mailto:hello@q.bio">hello@q.bio</a></p>
+    </div>
+    <div>
+      <h5>Product</h5>
+      <ul>
+        <li><a href='https://q.bio/q-exam'>Q Exam</a></li>
+        <li><a href='https://q.bio/dashboard'>Q Bio Health Dashboard</a></li>
+        <li>Instructions for Use (<a href="https://q.bio/docs/LBL001_User_Manual__Constellation_V1_5_RevB.0.pdf" download>US</a>, <a href="https://q.bio/docs/LBL003_User_Manual__Constellation_V2_Telus_RevA.0.pdf" download>Canada</a>)</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <ul>
+        <li><a href='https://q.bio/about'>About</a></li>
+        <li><a href='https://q.bio/clinic'>Our Clinic</a></li>
+        <li><a href='https://q.bio/partners'>Partners</a></li>
+        <li><a href="mailto:hello@q.bio">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>For visitors</h5>
+      <ul>
+        <li><a href='https://q.bio/book'>Book the Q Exam</a></li>
+        <li><a href='https://q.bio/partners-contact'>Partner with Q Bio</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <span>© 2026 Q Bio, Inc. · Redwood City, CA</span>
+    <span style="max-width: 60ch; line-height: 1.5;">The Q Exam is not a substitute for primary care and does not diagnose or treat disease. Q Bio, Q Exam, and Q Bio Health Dashboard are trademarks of Q Bio, Inc.</span>
+    <span><a href='https://q.bio/privacy'>Privacy</a> · <a href='https://q.bio/terms'>Terms</a></span>
+  </div>
+</footer>
+
+
+<!-- ======================= JS ======================= -->
+
+
+
+<script src="scripts/drawer.js"></script>
+<script src="scripts/topbar.js"></script>
+<script src="scripts/hero-video.js"></script>
+<script src="scripts/annotated-pairing.js"></script>
+<script src="scripts/fade-up.js"></script>
+</body>
+</html>

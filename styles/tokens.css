@@ -1,0 +1,231 @@
+/* =============================================================
+   Q.bio Design System – Colors & Type
+   Single source of truth for tokens. Import once:
+     <link rel="stylesheet" href="/colors_and_type.css">
+   ============================================================= */
+
+/* -----------------------------------------------------------
+   Fonts
+   Inter is the primary UI typeface across the Q Portal.
+   CircularXX is used for marketing / large display headings
+   (e.g. "Good morning, Rebecca!").
+   Menlo is used for code / monospace small captions.
+
+   SUBSTITUTION: CircularXX is a licensed font not distributed
+   here. We load Inter (UI) + Inter Tight (display fallback) +
+   JetBrains Mono from Google Fonts as the closest open match.
+   Swap for the licensed family in production.
+   ----------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;700&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* ---------- Brand ---------- */
+  --q-blue:        #0F75FF;   /* Primary. Logo, CTAs, links, focus */
+  --q-blue-hover:  #0B5ED0;   /* Pressed / hover state */
+  --q-teal:        #08A2AF;   /* Secondary brand */
+  --q-green:       #20C085;   /* Positive brand accent */
+
+  /* ---------- Core palette (fills) ---------- */
+  --c-purple:   #8B5CF6;
+  --c-indigo:   #585AD6;
+  --c-pink:     #E11D48;
+  --c-red:      #A73761;
+  --c-orange:   #ED6E12;
+  --c-yellow:   #EBB513;
+  --c-green:    #007F5F;
+  --c-teal:     #08A2AF;
+  --c-cyan:     #18ABDC;
+
+  /* ---------- Accessible text variants (WCAG-safe on white) ---------- */
+  --c-indigo-text:  #585AD6;
+  --c-purple-text:  #744CCD;
+  --c-pink-text:    #E11D48;
+  --c-red-text:     #A73761;
+  --c-orange-text:  #9F4A12;
+  --c-yellow-text:  #886600;
+  --c-green-text:   #007F5F;
+  --c-teal-text:    #0B5B62;
+  --c-cyan-text:    #067396;
+
+  /* ---------- Semantic ---------- */
+  --s-success: var(--c-green);       /* #007F5F */
+  --s-warning: var(--c-orange);      /* #ED6E12 */
+  --s-error:   var(--c-red);         /* #A73761 */
+  --s-info:    var(--c-indigo);      /* #585AD6 */
+  --s-danger:  var(--c-pink);        /* #E11D48 */
+
+  /* ---------- Semantic backgrounds (soft tints) ---------- */
+  --bg-success: #EDF8F4;
+  --bg-warning: #FFF7ED;
+  --bg-error:   #FEF2F2;
+  --bg-info:    #F0F0FF;
+  --bg-purple:  #F5F3FF;
+  --bg-pink:    #FFF1F2;
+  --bg-cyan:    #ECFEFF;
+  --bg-teal:    #F0FDFA;
+
+  /* ---------- Neutrals (text, surfaces, lines) ---------- */
+  --fg-1:     #4F576E;   /* Primary body text & headings (portal) */
+  --fg-2:     #687080;   /* Secondary text / captions — 4.9:1 on white (AA) */
+  --fg-3:     #5E6A7D;   /* Tertiary text — 5.5:1 on white (AA) */
+  --fg-ink:   #052B5E;   /* Marketing heading (deeper navy) */
+  --fg-black: #000000;
+
+  --bg-0:     #FFFFFF;   /* Card / surface */
+  --bg-1:     #FAFAFA;   /* Subtle app background */
+  --bg-2:     #F0F0F2;   /* Badge gray / inactive pill */
+  --bg-3:     #E2E2E4;   /* Divider block */
+
+  --line-1:   rgba(0,0,0,0.06);   /* Faint divider */
+  --line-2:   rgba(0,0,0,0.08);   /* Input border */
+  --line-3:   rgba(79,87,110,0.3);/* Filter pill border */
+  --line-4:   #C2C3C8;            /* Stronger border */
+
+  /* ---------- Shadows ---------- */
+  --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px 0 rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px -8px rgba(0,0,0,0.10);
+  --focus-ring: 0 0 0 3px rgba(15,117,255,0.25);
+
+  /* ---------- Radii ---------- */
+  --r-xs:  4px;
+  --r-sm:  6px;
+  --r-md:  8px;
+  --r-lg:  10px;   /* Default for buttons, inputs, small cards */
+  --r-xl:  14px;
+  --r-2xl: 20px;
+  --r-pill: 9999px;
+
+  /* ---------- Spacing scale (4px grid) ---------- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* ---------- Typography primitives ---------- */
+  --font-ui:      'Inter', -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Tight', 'Inter', -apple-system, sans-serif; /* CircularXX substitute */
+  --font-mono:    'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* Named text styles taken directly from the library */
+  /* (Heading LG, MD, Body, Body SM, Caption, Label SM) */
+  --t-heading-lg-size:   22px;
+  --t-heading-lg-lh:     33px;
+  --t-heading-lg-weight: 700;
+
+  --t-heading-md-size:   20px;
+  --t-heading-md-lh:     30px;
+  --t-heading-md-weight: 700;
+
+  --t-heading-sm-size:   18px;
+  --t-heading-sm-lh:     27px;
+  --t-heading-sm-weight: 700;
+
+  --t-body-size:    13px;
+  --t-body-lh:      19.5px;
+  --t-body-weight:  400;
+
+  --t-body-sm-size:   12px;
+  --t-body-sm-lh:     18px;
+  --t-body-sm-weight: 400;
+
+  --t-caption-size:     11px;
+  --t-caption-lh:       16.5px;
+  --t-caption-weight:   500;
+  --t-caption-tracking: 1.2px;
+
+  --t-label-sm-size:   10px;
+  --t-label-sm-lh:     15px;
+  --t-label-sm-weight: 500;
+}
+
+/* -----------------------------------------------------------
+   Semantic type classes — apply directly for instant fidelity
+   ----------------------------------------------------------- */
+.q-display-lg,
+h1.q {
+  font-family: var(--font-display);
+  font-weight: var(--t-heading-lg-weight);
+  font-size: var(--t-heading-lg-size);
+  line-height: var(--t-heading-lg-lh);
+  color: var(--fg-1);
+  letter-spacing: -0.01em;
+}
+
+.q-heading-md,
+h2.q {
+  font-family: var(--font-ui);
+  font-weight: var(--t-heading-md-weight);
+  font-size: var(--t-heading-md-size);
+  line-height: var(--t-heading-md-lh);
+  color: var(--fg-1);
+}
+
+.q-heading-sm,
+h3.q {
+  font-family: var(--font-ui);
+  font-weight: var(--t-heading-sm-weight);
+  font-size: var(--t-heading-sm-size);
+  line-height: var(--t-heading-sm-lh);
+  color: var(--fg-1);
+}
+
+.q-body,
+p.q {
+  font-family: var(--font-ui);
+  font-weight: var(--t-body-weight);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  color: var(--fg-1);
+}
+
+.q-body-sm {
+  font-family: var(--font-ui);
+  font-weight: var(--t-body-sm-weight);
+  font-size: var(--t-body-sm-size);
+  line-height: var(--t-body-sm-lh);
+  color: var(--fg-2);
+}
+
+.q-caption {
+  font-family: var(--font-ui);
+  font-weight: var(--t-caption-weight);
+  font-size: var(--t-caption-size);
+  line-height: var(--t-caption-lh);
+  letter-spacing: var(--t-caption-tracking);
+  color: var(--fg-2);
+  text-transform: none;
+}
+
+.q-label-sm {
+  font-family: var(--font-ui);
+  font-weight: var(--t-label-sm-weight);
+  font-size: var(--t-label-sm-size);
+  line-height: var(--t-label-sm-lh);
+  color: var(--fg-1);
+}
+
+.q-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--fg-1);
+}
+
+/* Baseline reset helpers */
+.q-reset {
+  color: var(--fg-1);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 19.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-1);
+}

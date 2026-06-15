@@ -1,0 +1,230 @@
+/* ============================================================
+   Annotated dashboard component
+   Used on the homepage (replacing the plain dashboard showcase
+   image) and on the Q Exam page. Shows the real Q Bio Health
+   Dashboard with numbered pins keyed to a side-panel legend.
+   ============================================================ */
+
+.dash-annot {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+  align-items: start;
+}
+
+/* ---- Image frame with absolute pins ---- */
+
+.dash-annot-frame {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(7,32,63,0.10);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(7,32,63,0.04),
+    0 30px 80px -28px rgba(7,32,63,0.22);
+  isolation: isolate;
+}
+.dash-annot-frame .chrome {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #fff, #F7F8FB);
+  border-bottom: 1px solid rgba(7,32,63,0.08);
+}
+.dash-annot-frame .chrome .dots {
+  display: inline-flex; gap: 6px;
+}
+.dash-annot-frame .chrome .dots span {
+  width: 10px; height: 10px; border-radius: 50%; background: #E2E4EA;
+}
+.dash-annot-frame .chrome .label {
+  justify-self: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--fg-3);
+}
+.dash-annot-frame .chrome .stamp {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--q-blue);
+  background: rgba(15,117,255,0.08);
+  padding: 4px 8px; border-radius: var(--r-pill);
+}
+.dash-annot-frame .chrome .stamp::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--q-blue);
+}
+
+.dash-annot-stage {
+  position: relative;
+  background: #F4F6FA;
+  line-height: 0;
+}
+.dash-annot-stage img {
+  display: block; width: 100%; height: auto;
+}
+
+/* ---- Numbered pins on the image ---- */
+
+.dash-annot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--ink-1);
+  color: #fff;
+  border: 2px solid #fff;
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.18),
+    0 0 0 4px rgba(15,117,255,0.18);
+  z-index: 2;
+  animation: dashPin 2.4s ease-out 0.4s 1 both;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+.dash-annot-pin.is-active {
+  transform: translate(-50%, -50%) scale(1.18);
+  z-index: 3;
+}
+/* Blue (default) pin — active state */
+.dash-annot-pin:not(.flag):not(.new).is-active {
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 8px rgba(15,117,255,0.35),
+    0 8px 24px -4px rgba(15,117,255,0.55);
+}
+.dash-annot-pin.flag.is-active {
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 8px rgba(197,39,107,0.40),
+    0 8px 24px -4px rgba(197,39,107,0.55);
+}
+.dash-annot-pin.new.is-active {
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 8px rgba(176,122,15,0.40),
+    0 8px 24px -4px rgba(176,122,15,0.55);
+}
+
+/* Card active state — bidirectional pairing */
+.dash-card {
+  cursor: pointer;
+  transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.dash-card:focus-visible { outline: 2px solid var(--q-blue); outline-offset: 2px; }
+.dash-card.is-active {
+  transform: translateY(-1px);
+  background: rgba(15,117,255,0.04);
+  box-shadow: 0 14px 36px -16px rgba(7,32,63,0.20);
+}
+.dash-card.flag.is-active {
+  background: rgba(197,39,107,0.05);
+  box-shadow: 0 14px 36px -16px rgba(197,39,107,0.30);
+}
+.dash-card.new.is-active {
+  background: rgba(176,122,15,0.05);
+  box-shadow: 0 14px 36px -16px rgba(176,122,15,0.30);
+}
+
+.dash-annot-pin.flag {
+  background: #C5276B;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.18),
+    0 0 0 4px rgba(197,39,107,0.18);
+}
+.dash-annot-pin.new {
+  background: #B07A0F;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.18),
+    0 0 0 4px rgba(235,181,19,0.22);
+}
+
+@keyframes dashPin {
+  0%   { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  60%  { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dash-annot-pin { animation: none; }
+}
+
+/* ---- Side legend ---- */
+
+.dash-annot-legend {
+  display: flex; flex-direction: column;
+  gap: 12px;
+}
+.dash-annot-legend .legend-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--fg-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(7,32,63,0.10);
+}
+.dash-annot-legend .legend-head .e { color: var(--q-blue); font-weight: 600; }
+
+.dash-card {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  padding: 18px 18px 18px 16px;
+  background: #fff;
+  border: 1px solid rgba(7,32,63,0.10);
+  border-left: 2px solid var(--q-blue);
+  border-radius: 4px;
+}
+/* When the numeric badge .n is absent, collapse to a single content column
+   so the body doesn't land in the 30px badge slot. */
+.dash-card:not(:has(.n)) {
+  grid-template-columns: 1fr;
+}
+.dash-card .n {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--ink-1);
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(7,32,63,0.10);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px; font-weight: 700;
+}
+.dash-card .body {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.dash-card .e {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--q-blue);
+  font-weight: 600;
+}
+.dash-card p {
+  margin: 0;
+  font-size: 13.5px; line-height: 1.5; color: var(--fg-1);
+  text-wrap: pretty;
+}
+.dash-card p strong { color: var(--ink-1); font-weight: 600; }
+
+/* Flag (red) — out-of-range / follow-up */
+.dash-card.flag { border-left-color: #C5276B; }
+.dash-card.flag .n { background: #C5276B; }
+.dash-card.flag .e { color: #C5276B; }
+
+/* New (amber) — new finding vs. previous exam */
+.dash-card.new { border-left-color: #B07A0F; }
+.dash-card.new .n { background: #B07A0F; }
+.dash-card.new .e { color: #B07A0F; }
+
+/* ---- Responsive: stack on narrow ---- */
+@media (max-width: 980px) {
+  .dash-annot { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .dash-annot-frame .chrome .label { font-size: 9.5px; }
+  .dash-annot-pin { width: 24px; height: 24px; font-size: 11px; }
+}

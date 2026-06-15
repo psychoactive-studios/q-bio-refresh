@@ -1,0 +1,36 @@
+// Hero video: 0.4× parallax + text fade-on-scroll-out.
+// Respects prefers-reduced-motion (skips the parallax loop and pauses the video).
+(function () {
+  var hero = document.querySelector('.hb-hero');
+  if (!hero) return;
+  var videoWrap = hero.querySelector('[data-hero-video]');
+  var overlay = hero.querySelector('.hb-hero-overlay');
+  var video = hero.querySelector('video');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function applyReducedMotion(on) {
+    if (on && video) { try { video.pause(); } catch (e) {} }
+    else if (!on && video) { try { video.play(); } catch (e) {} }
+  }
+  applyReducedMotion(reduce.matches);
+  reduce.addEventListener && reduce.addEventListener('change', function (e) { applyReducedMotion(e.matches); });
+
+  if (reduce.matches) return;
+
+  var pending = false;
+  function onScroll() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () {
+      var rect = hero.getBoundingClientRect();
+      var h = rect.height || 1;
+      var t = -rect.top / h; // 0 = hero top in view, 1 = scrolled past
+      if (videoWrap) videoWrap.style.transform = 'translate3d(0,' + (t * h * 0.4).toFixed(1) + 'px,0)';
+      if (overlay) overlay.style.opacity = String(Math.max(0, 1 - t * 1.4));
+      pending = false;
+    });
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+})();
