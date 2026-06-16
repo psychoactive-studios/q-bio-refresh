@@ -26,7 +26,6 @@
       var rect = hero.getBoundingClientRect();
       var h = rect.height || 1;
       var t = -rect.top / h; // 0 = hero top in view, 1 = scrolled past
-      if (videoWrap) videoWrap.style.transform = 'translate3d(0,' + (t * h * 0.4).toFixed(1) + 'px,0)';
       if (overlay) overlay.style.opacity = String(Math.max(0, 1 - t * 1.4));
       if (scrollInd) scrollInd.style.opacity = String(Math.max(0, 1 - t * 5));
       pending = false;

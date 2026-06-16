@@ -85,15 +85,34 @@ img { max-width: 100%; display: block; }
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+  position: relative;
+  overflow: hidden;
+  transition: background .15s ease, color .3s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease;
   letter-spacing: -0.005em;
 }
+/* Fill oval for hover animation (injected by btn-fills.js) */
+.q-btn__fill {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 150%; height: 320%;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate(-50%, 100%);
+  z-index: 0;
+}
+.q-btn__content {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+/* When outline button has fill, text turns white on hover */
+.q-btn.outline.has-fill:hover { color: #fff !important; }
 .q-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 16px -6px rgba(7,32,63,0.22);
 }
-.q-btn.primary { background: var(--ink-1); color: #fff; border-color: transparent; }
-.q-btn.primary:hover { background: var(--q-blue); color: #fff; }
+.q-btn.primary { background: var(--q-blue); color: #fff; border-color: transparent; }
+.q-btn.primary:hover { background: var(--q-blue-hover); color: #fff; }
 .q-btn.ghost { background: transparent; color: var(--ink-1); border-color: transparent; }
 .q-btn.ghost:hover { background: rgba(7,32,63,0.06); }
 .q-btn.outline { background: #fff; color: var(--ink-1); border-color: transparent; }
