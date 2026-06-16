@@ -1269,6 +1269,319 @@
   .q-section { padding: 0 var(--pad) clamp(56px, 7vw, 112px); }
   .q-wrap { max-width: var(--max); margin: 0 auto; }
 
+  /* ---------- Results / "What Q Bio delivers" card grid (results-section_7) ---------- */
+  .c-color-block {
+    width: 100%;
+    background: #FBFAF7;
+    padding: 0 var(--pad) clamp(56px, 7vw, 112px);
+  }
+  .o-container {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .c-text-block {
+    text-align: left;
+    margin-bottom: 48px;
+  }
+  .t-display-2 {
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
+    font-size: clamp(32px, 4.2vw, 56px);
+    font-weight: 300;
+    color: var(--ink-1);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    margin-bottom: 20px;
+    max-width: 22ch;
+  }
+  .t-display-2 .accent { font-style: normal; color: var(--q-blue); font-weight: 300; }
+  .c-intro-body {
+    font-size: 15.5px;
+    font-weight: 400;
+    color: var(--fg-1);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin: 10px 0 0;
+  }
+  .c-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .c-card {
+    background: #EEF2F7;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .c-chip {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #ddd5c5;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #38342c;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    margin-top: 12px;
+    flex-shrink: 0;
+  }
+  .c-viz {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .c-viz svg { width: 100%; height: 100%; }
+  .c-label {
+    padding: 0 28px 26px;
+    position: relative;
+    z-index: 2;
+  }
+  .c-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #3b7de8;
+    margin-bottom: 4px;
+  }
+  .c-label-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink-1);
+    line-height: 1.3;
+  }
+  @media (max-width: 700px) {
+    .c-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Scan sticky-scroll section (scan-section_2) ---------- */
+  .scan-section {
+    position: relative;
+    height: 300vh;
+    background: #FBFAF7;
+    padding: 32px 40px;
+    box-sizing: border-box;
+  }
+  .scan-inner {
+    position: sticky;
+    top: 32px;
+    height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 60px;
+    gap: 40px;
+    overflow: hidden;
+    background: #EEF2F7;
+    border-radius: 4px;
+  }
+  .scan-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(15,117,255,0.40) 1px, transparent 1px);
+    background-size: 28px 28px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .scan-left {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 28px;
+  }
+  .scan-header {
+    margin-bottom: 56px;
+    max-width: 540px;
+  }
+  .scan-title {
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
+    font-size: clamp(30px, 3.2vw, 48px);
+    font-weight: 300;
+    font-variation-settings: 'wdth' 100, 'wght' 300;
+    color: #07203F;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  .scan-title-accent { color: #0F75FF; }
+  .scan-intro {
+    font-size: 15px;
+    color: rgba(7,32,63,0.65);
+    line-height: 1.65;
+    max-width: 480px;
+  }
+  .scan-points {
+    position: relative;
+    height: 220px;
+    max-width: 460px;
+  }
+  .scan-progress {
+    position: absolute;
+    left: -44px;
+    top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+  .progress-pip {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(7,32,63,0.2);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .progress-pip:hover { background: rgba(7,32,63,0.4); }
+  .progress-pip.is-active {
+    background: #0F75FF;
+    transform: scale(1.55);
+    box-shadow: 0 0 10px rgba(15,117,255,0.4);
+  }
+  .scan-point {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    padding-top: 28px;
+    border-top: 1px solid rgba(7,32,63,0.12);
+  }
+  .scan-point.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .point-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #0F75FF;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .point-label::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0F75FF;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(15,117,255,0.4);
+  }
+  .point-title {
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 300;
+    color: #07203F;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .point-body {
+    font-size: 15px;
+    color: rgba(7,32,63,0.65);
+    line-height: 1.6;
+  }
+  .scan-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .scan-image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scan-image-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(ellipse at center, rgba(15,117,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .scan-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 80vh;
+    filter: contrast(1.05) brightness(0.95);
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 991px) {
+    .scan-section { height: auto; padding: 20px; }
+    .scan-inner {
+      position: relative;
+      top: auto;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 24px 60px;
+      gap: 0;
+      max-width: 100%;
+      border-radius: 4px;
+    }
+    .scan-left { display: contents; }
+    .scan-header { order: 1; margin-bottom: 36px; max-width: 100%; padding: 0; }
+    .scan-right { order: 2; display: flex; height: auto; margin-bottom: 48px; }
+    .scan-image-wrap { max-width: 100%; }
+    .scan-image { max-height: 60vw; }
+    .scan-points {
+      order: 3;
+      position: static;
+      height: auto;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .scan-progress { display: none; }
+    .scan-point {
+      position: static;
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto;
+      padding: 20px 20px 22px;
+      border: 1px solid rgba(7,32,63,0.10);
+      border-top: 1px solid rgba(7,32,63,0.10);
+      border-radius: 12px;
+      background: rgba(7,32,63,0.03);
+      transition: none;
+    }
+    .point-title { font-size: 17px; font-weight: 300; }
+  }
+
   /* ---------- Findings that change care ---------- */
   .find-grid {
     display: grid;
@@ -1731,11 +2044,9 @@
   }
   .h-incl > article:hover { background: #FAFCFF; }
 
-  /* ---------- 5-card grid: 2-column at mid-range (560–880px) ---------- */
-  @media (min-width: 560px) and (max-width: 880px) {
-    .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
-    .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2 !important; }
-    .h-incl.is-five > article:nth-child(n+4)  { grid-column: span 3 !important; }
+  /* ---------- 5-card grid: single column at mobile ---------- */
+  @media (max-width: 880px) {
+    .h-incl.is-five > article { grid-column: span 1; }
   }
 
   /* ---------- Section 04 physician quote ---------- */
@@ -1905,48 +2216,176 @@
 
 
 <!-- ======================= WHAT IS Q BIO ======================= -->
-<section id="about" class="q-section h-about" data-screen-label="01 What is Q Bio" aria-labelledby="about-heading">
-  <div class="q-wrap">
+<section id="about" class="c-color-block" data-screen-label="01 What is Q Bio" aria-labelledby="about-heading">
+  <div class="o-container">
 
-    <!-- Section header -->
-    <div class="h-h fade-up">
-      <span class="num">01 · The company</span>
-      <div>
-        <h2 id="about-heading">Q Bio. <em>Quantitative biology</em> for preventive care.</h2>
-      </div>
+    <div class="c-text-block fade-up">
+      <h2 id="about-heading" class="t-display-2">
+        Q Bio. <span class="accent">Quantitative biology</span><br>
+        for preventive care.
+      </h2>
+      <p class="c-intro-body">
+        We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable.
+      </p>
     </div>
 
-    <!-- Mission — full-width paragraph -->
-    <div class="h-about-sub h-about-mission fade-up">
-      <p>We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable. The Q Exam delivers personalised insights that predict health changes and enable early action.</p>
-    </div>
+    <div class="c-grid fade-up">
 
-    <!-- Two-column split: anatomy figure + What the Q Exam delivers -->
-    <div class="h-about-split fade-up">
-      <figure class="h-about-fig">
-        <img src="assets/body-system-map.png" alt="AI-segmented whole-body anatomy from a Q Exam MRI, color-coded by organ system." loading="lazy">
-        <figcaption><strong>AI-segmented anatomy</strong> &middot; whole-body MRI</figcaption>
-      </figure>
-
-      <div class="h-about-pillars">
-        <div class="h-about-points">
-          <header><span class="se">What the Q Exam delivers</span></header>
-          <article>
-            <span class="e">Quantitative Biology</span>
-            <h3>Clinical-grade measurement of the body.</h3>
-          </article>
-          <article>
-            <span class="e">Guidance for your care team</span>
-            <h3>Better clinical insights, for you and your doctor.</h3>
-          </article>
-          <article>
-            <span class="e">A complete clinical record</span>
-            <h3>Data your physician can act on.</h3>
-          </article>
+      <!-- Card 1: Quantitative Biology -->
+      <div class="c-card">
+        <div class="c-viz">
+          <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="helixGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b7de8" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#3b7de8" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="160" cy="100" rx="130" ry="55" fill="url(#helixGlow)"/>
+            <path d="M 20,100 C 35,62  55,62  70,100 C 85,138 105,138 120,100 C 135,62  155,62  170,100 C 185,138 205,138 220,100 C 235,62  255,62  270,100 C 285,138 300,138 300,138" stroke="#3b7de8" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.85"/>
+            <path d="M 20,100 C 35,138 55,138 70,100 C 85,62  105,62  120,100 C 135,138 155,138 170,100 C 185,62  205,62  220,100 C 235,138 255,138 270,100 C 285,62  300,62  300,62" stroke="#8090a8" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.85"/>
+            <line x1="45"  y1="65"  x2="45"  y2="135" stroke="#8090a8" stroke-width="1.2" opacity="0.45"/>
+            <line x1="95"  y1="65"  x2="95"  y2="135" stroke="#8090a8" stroke-width="1.2" opacity="0.45"/>
+            <line x1="145" y1="65"  x2="145" y2="135" stroke="#8090a8" stroke-width="1.2" opacity="0.45"/>
+            <line x1="195" y1="65"  x2="195" y2="135" stroke="#8090a8" stroke-width="1.2" opacity="0.45"/>
+            <line x1="245" y1="65"  x2="245" y2="135" stroke="#8090a8" stroke-width="1.2" opacity="0.45"/>
+            <line x1="32"  y1="80"  x2="32"  y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="57"  y1="80"  x2="57"  y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="82"  y1="80"  x2="82"  y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="107" y1="80"  x2="107" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="132" y1="80"  x2="132" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="157" y1="80"  x2="157" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="182" y1="80"  x2="182" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="207" y1="80"  x2="207" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="232" y1="80"  x2="232" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="257" y1="80"  x2="257" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <line x1="282" y1="80"  x2="282" y2="120" stroke="#8090a8" stroke-width="0.9" opacity="0.3"/>
+            <circle cx="20"  cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="45"  cy="63"  r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="70"  cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="95"  cy="137" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="120" cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="145" cy="63"  r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="170" cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="195" cy="137" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="220" cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="245" cy="63"  r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="270" cy="100" r="4.5" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="45"  cy="137" r="3.5" fill="#8090a8" opacity="0.8"/>
+            <circle cx="95"  cy="63"  r="3.5" fill="#8090a8" opacity="0.8"/>
+            <circle cx="145" cy="137" r="3.5" fill="#8090a8" opacity="0.8"/>
+            <circle cx="195" cy="63"  r="3.5" fill="#8090a8" opacity="0.8"/>
+            <circle cx="245" cy="137" r="3.5" fill="#8090a8" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="c-label">
+          <div class="c-eyebrow">Quantitative Biology</div>
+          <div class="c-label-text">Clinical-grade measurement<br>of the body.</div>
         </div>
       </div>
-    </div>
 
+      <!-- Card 2: Care team -->
+      <div class="c-card">
+        <div class="c-viz">
+          <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="nodeGlow1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b7de8" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#3b7de8" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="nodeGlow2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b7de8" stop-opacity="0.2"/>
+                <stop offset="100%" stop-color="#3b7de8" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="160" cy="105" r="36" fill="url(#nodeGlow1)"/>
+            <line x1="160" y1="105" x2="90" y2="60" stroke="#3b7de8" stroke-width="1.5" opacity="0.55"/>
+            <line x1="160" y1="105" x2="240" y2="65" stroke="#3b7de8" stroke-width="1.5" opacity="0.55"/>
+            <line x1="160" y1="105" x2="80" y2="145" stroke="#3b7de8" stroke-width="1.5" opacity="0.55"/>
+            <line x1="160" y1="105" x2="240" y2="145" stroke="#3b7de8" stroke-width="1.5" opacity="0.55"/>
+            <line x1="160" y1="105" x2="160" y2="30" stroke="#3b7de8" stroke-width="1.5" opacity="0.45"/>
+            <line x1="90" y1="60" x2="240" y2="65" stroke="#3b7de8" stroke-width="0.8" opacity="0.25"/>
+            <line x1="80" y1="145" x2="240" y2="145" stroke="#3b7de8" stroke-width="0.8" opacity="0.25"/>
+            <circle cx="90" cy="60" r="18" fill="url(#nodeGlow2)"/>
+            <circle cx="240" cy="65" r="18" fill="url(#nodeGlow2)"/>
+            <circle cx="80" cy="145" r="18" fill="url(#nodeGlow2)"/>
+            <circle cx="240" cy="145" r="18" fill="url(#nodeGlow2)"/>
+            <circle cx="160" cy="105" r="9" fill="#3b7de8" opacity="0.9"/>
+            <circle cx="160" cy="105" r="5" fill="#fff" opacity="0.9"/>
+            <circle cx="90" cy="44" r="9" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <path d="M82,53 Q78,62 78,72 L102,72 Q102,62 98,53 Z" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <circle cx="90" cy="60" r="5" fill="#3b7de8" opacity="0.85"/>
+            <circle cx="240" cy="49" r="9" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <path d="M232,58 Q228,67 228,76 L252,76 Q252,67 248,58 Z" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <circle cx="240" cy="65" r="5" fill="#3b7de8" opacity="0.85"/>
+            <circle cx="80" cy="129" r="9" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <path d="M72,138 Q68,147 68,156 L92,156 Q92,147 88,138 Z" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <circle cx="80" cy="145" r="5" fill="#3b7de8" opacity="0.85"/>
+            <rect x="228" y="130" width="24" height="18" rx="2" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <path d="M228,134 L236,134 L238,130 L252,130" stroke="#8090a8" stroke-width="1.2" fill="none"/>
+            <circle cx="240" cy="145" r="5" fill="#3b7de8" opacity="0.85"/>
+            <circle cx="160" cy="30" r="5" fill="#3b7de8" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="c-label">
+          <div class="c-eyebrow">Guidance for your care team</div>
+          <div class="c-label-text">Better clinical insights, for<br>you and your doctor.</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Complete clinical record -->
+      <div class="c-card">
+        <div class="c-viz">
+          <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="folderGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#5aa8f0"/>
+                <stop offset="100%" stop-color="#3b7de8"/>
+              </linearGradient>
+              <linearGradient id="docGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f4efe5"/>
+                <stop offset="100%" stop-color="#e0d8cc"/>
+              </linearGradient>
+              <filter id="fShadow" x="-15%" y="-15%" width="140%" height="150%">
+                <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00000018"/>
+              </filter>
+              <filter id="folderShadow" x="-10%" y="-10%" width="130%" height="140%">
+                <feDropShadow dx="2" dy="6" stdDeviation="8" flood-color="#1a4fa030"/>
+              </filter>
+            </defs>
+            <rect x="88" y="38" width="96" height="118" rx="6" fill="url(#docGrad)" stroke="#d0c8ba" stroke-width="0.8" filter="url(#fShadow)" opacity="0.5" transform="rotate(-6,136,97)"/>
+            <rect x="92" y="34" width="96" height="118" rx="6" fill="url(#docGrad)" stroke="#d0c8ba" stroke-width="0.8" filter="url(#fShadow)" opacity="0.65" transform="rotate(-3,140,93)"/>
+            <rect x="96" y="30" width="96" height="118" rx="6" fill="url(#docGrad)" stroke="#d0c8ba" stroke-width="0.8" filter="url(#fShadow)"/>
+            <line x1="110" y1="55" x2="178" y2="55" stroke="#c0b8aa" stroke-width="1.2"/>
+            <line x1="110" y1="66" x2="178" y2="66" stroke="#c0b8aa" stroke-width="1"/>
+            <line x1="110" y1="76" x2="165" y2="76" stroke="#c0b8aa" stroke-width="1" opacity="0.7"/>
+            <line x1="110" y1="86" x2="170" y2="86" stroke="#c0b8aa" stroke-width="1" opacity="0.7"/>
+            <line x1="110" y1="96" x2="158" y2="96" stroke="#c0b8aa" stroke-width="1" opacity="0.6"/>
+            <rect x="110" y="108" width="30" height="20" rx="2" fill="#ddd5c5" opacity="0.5"/>
+            <line x1="113" y1="123" x2="113" y2="118" stroke="#8090a8" stroke-width="1.5"/>
+            <line x1="118" y1="123" x2="118" y2="114" stroke="#8090a8" stroke-width="1.5"/>
+            <line x1="123" y1="123" x2="123" y2="116" stroke="#8090a8" stroke-width="1.5"/>
+            <line x1="128" y1="123" x2="128" y2="112" stroke="#8090a8" stroke-width="1.5"/>
+            <line x1="133" y1="123" x2="133" y2="109" stroke="#3b7de8" stroke-width="1.5"/>
+            <line x1="200" y1="97" x2="224" y2="97" stroke="#8090a8" stroke-width="1.5" stroke-linecap="round"/>
+            <polygon points="224,97 218,93 218,101" fill="#8090a8"/>
+            <g filter="url(#folderShadow)">
+              <path d="M228,62 L248,62 Q252,62 252,66 L252,70 L224,70 L224,66 Q224,62 228,62 Z" fill="url(#folderGrad)"/>
+              <rect x="216" y="70" width="76" height="60" rx="5" fill="url(#folderGrad)"/>
+              <rect x="216" y="70" width="76" height="12" rx="0" fill="rgba(255,255,255,0.1)"/>
+            </g>
+            <circle cx="280" cy="120" r="14" fill="#fff" filter="url(#fShadow)"/>
+            <circle cx="280" cy="120" r="14" fill="#3b7de8" opacity="0.12"/>
+            <polyline points="273,120 278,126 288,114" stroke="#3b7de8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="c-label">
+          <div class="c-eyebrow">A complete clinical record</div>
+          <div class="c-label-text">Data your physician<br>can act on.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -2078,72 +2517,62 @@
       </div>
     </div>
 
-    <div class="fade-up">
-      <div class="dash-annot">
-        <figure class="dash-annot-frame" aria-label="Q Bio Health Dashboard — annotated patient overview">
-          <figcaption class="chrome">
-            <span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>
-            <span class="label">Q Bio Health Dashboard · sample patient view</span>
-            <span class="stamp">Annotated</span>
-          </figcaption>
-          <div class="dash-annot-stage">
-            <img src="assets/dashboard/01-overview.jpg" alt="Q Bio Health Dashboard patient overview." width="1800" height="982" loading="lazy">
-          </div>
-        </figure>
+    <!-- Left: text content -->
+    <div class="scan-left">
 
-        <aside class="dash-annot-legend" aria-label="What the Dashboard surfaces">
-          <div class="legend-head">
-            <span>What the Dashboard surfaces</span>
-            <span class="e">High-level view</span>
-          </div>
-
-          <article class="dash-card">
-            <div class="body">
-              <span class="e">Subsystem views</span>
-              <p>Findings organized by body system: nervous, circulatory, digestive, musculoskeletal, and more.</p>
-            </div>
-          </article>
-
-          <article class="dash-card">
-            <div class="body">
-              <span class="e">Key radiology findings</span>
-              <p>Whole-body MRI findings interpreted by a Q Bio radiologist and surfaced at the top of the record.</p>
-            </div>
-          </article>
-
-          <article class="dash-card">
-            <div class="body">
-              <span class="e">MRI measurements</span>
-              <p>Quantitative measurements extracted from imaging and tracked year-over-year against the member&rsquo;s own baseline.</p>
-            </div>
-          </article>
-
-          <article class="dash-card flag">
-            <div class="body">
-              <span class="e">Flagged results for follow-up</span>
-              <p>Out-of-range biomarkers and new findings routed to the physician follow-up plan and shareable with the member&rsquo;s care team.</p>
-            </div>
-          </article>
-        </aside>
+      <div class="scan-header">
+        <h2 id="dashboard-heading" class="scan-title">The exam captures the data. <span class="scan-title-accent">The dashboard makes it visible.</span></h2>
+        <p class="scan-intro">A look inside the Q Bio Health Dashboard, the longitudinal record where every Q Exam is read against the member's own prior measurements.</p>
       </div>
 
-      <aside class="dash-quote fade-up">
-        <span class="kind">Physician &middot; Q Bio</span>
-        <blockquote>At a first Q Exam, something unexpected is common. We routinely surface findings that change a member&rsquo;s preventive plan &mdash; incidental findings, out-of-range biomarkers, or structural changes that only become visible when you look with this level of detail.</blockquote>
-        <div class="who">
-          <img src="assets/team/garry-choy.png" alt="Garry Choy, MD/MBA" width="48" height="48" loading="lazy">
-          <div>
-            <span class="nm">Garry Choy, MD/MBA</span>
-            <span class="ti">Co-founder &middot; Q Bio</span>
-          </div>
-        </div>
-      </aside>
+      <div class="scan-points" id="scanPoints">
 
-      <div class="dash-cta-row">
-        <a class='q-btn primary' href='https://q.bio/dashboard'>See the full Dashboard
-        </a>
+        <div class="scan-progress" id="scanProgress">
+          <div class="progress-pip is-active"></div>
+          <div class="progress-pip"></div>
+          <div class="progress-pip"></div>
+          <div class="progress-pip"></div>
+        </div>
+
+        <div class="scan-point is-active" data-index="0">
+          <div class="point-label">01 / Subsystem views</div>
+          <div class="point-title">Findings, organized by body system.</div>
+          <div class="point-body">Nervous, circulatory, digestive, musculoskeletal, and more — each subsystem grouped into its own view so members and physicians can step through the body without losing context.</div>
+        </div>
+
+        <div class="scan-point" data-index="1">
+          <div class="point-label">02 / Key radiology findings</div>
+          <div class="point-title">Read by a radiologist, surfaced at the top.</div>
+          <div class="point-body">Whole-body MRI findings are interpreted by a Q Bio radiologist and pinned to the top of the record so nothing material is buried in the dataset below.</div>
+        </div>
+
+        <div class="scan-point" data-index="2">
+          <div class="point-label">03 / MRI measurements</div>
+          <div class="point-title">Tracked against your own baseline.</div>
+          <div class="point-body">Quantitative measurements extracted from imaging and tracked year-over-year against the member's own prior scans, not a population average.</div>
+        </div>
+
+        <div class="scan-point" data-index="3">
+          <div class="point-label">04 / Flagged for follow-up</div>
+          <div class="point-title">Routed to a real care plan.</div>
+          <div class="point-body">Out-of-range biomarkers and new findings are routed to the physician follow-up plan and made shareable with the member's wider care team.</div>
+        </div>
+
       </div>
     </div>
+
+    <!-- Right: scan image -->
+    <div class="scan-right">
+      <div class="scan-image-wrap">
+        <img
+          src="https://cdn.prod.website-files.com/653836f64e8770bb2190b74d/699d88170d178e970f075818_scan.webp"
+          alt="Q Bio whole body MRI scan"
+          class="scan-image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
   </div>
 </section>
 
