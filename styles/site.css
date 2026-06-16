@@ -137,7 +137,7 @@ img { max-width: 100%; display: block; }
   --topbar-menu-border: rgba(7,32,63,0.12);
   --topbar-menu-bg: #fff;
   --topbar-menu-ink: var(--ink-1);
-  --topbar-primary-bg: var(--ink-1);
+  --topbar-primary-bg: var(--q-blue);
   --topbar-primary-ink: #fff;
 
   /* Floating pill — fixed position, centred, inset from viewport edges */
@@ -210,7 +210,7 @@ body.has-hero-overlay .q-top:not(.scrolled) {
   border-color: transparent !important;
 }
 .q-top .q-actions .q-btn.primary:hover {
-  background: var(--q-blue) !important;
+  background: var(--q-blue-hover) !important;
   color: #fff !important;
   filter: none;
 }

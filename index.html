@@ -381,9 +381,8 @@
     border-radius: 4px;
     overflow: hidden;
   }
-  .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
-  .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2; }
-  .h-incl.is-five > article:nth-child(n+4) { grid-column: span 3; }
+  .h-incl.is-five { grid-template-columns: repeat(5, 1fr); }
+  .h-incl.is-five > article { grid-column: span 1; }
   .h-incl > article {
     background: #fff;
     padding: 28px 24px 24px;
@@ -392,14 +391,6 @@
   .h-incl .num { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px; color: var(--q-blue); text-transform: uppercase; }
   .h-incl h3 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--ink-1); margin: 0; }
   .h-incl p { font-size: 13.5px; line-height: 1.55; color: var(--fg-3); margin: 0; }
-  @media (max-width: 1180px) {
-    .h-incl.is-five { grid-template-columns: repeat(6, 1fr); }
-    .h-incl.is-five > article:nth-child(-n+3) { grid-column: span 2; }
-    .h-incl.is-five > article:nth-child(n+4) { grid-column: span 3; }
-  }
-  @media (max-width: 720px) {
-    .h-incl.is-five > article:nth-child(n) { grid-column: span 6; }
-  }
   @media (max-width: 880px) { .h-incl, .h-incl.is-five { grid-template-columns: 1fr; } }
 
   /* ---------- What is Q Bio — anatomy + narrative + pillars ---------- */
@@ -1447,12 +1438,12 @@
   .hb-hero-fact .hb-fact-icon { color: rgba(242,237,227,0.6); flex: none; }
   .hb-hero-fact .hb-fact-value {
     font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
-    font-weight: 300;
-    font-size: clamp(14px, 1.15vw, 17px);
+    font-weight: 400;
+    font-size: clamp(13px, 1.05vw, 15px);
     line-height: 1.25;
-    color: var(--warm-1);
+    color: #fff;
     letter-spacing: -0.01em;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
   }
   .hb-location {
     margin: 0 0 18px;
@@ -1473,11 +1464,11 @@
     margin: 0;
     font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 400;
-    font-size: clamp(40px, 6.4vw, 88px);
-    line-height: 1.02;
+    font-size: clamp(36px, 5.4vw, 72px);
+    line-height: 1.04;
     letter-spacing: -0.01em;
     color: var(--warm-1);
-    max-width: 22ch;
+    max-width: 28ch;
     text-wrap: balance;
     text-shadow: 0 1px 4px rgba(0,0,0,0.18);
   }
@@ -1526,6 +1517,22 @@
     text-transform: uppercase;
     color: rgba(242,237,227,0.72);
     text-shadow: 0 1px 3px rgba(0,0,0,0.20);
+  }
+  /* Easing on scroll-driven opacity fade */
+  .hb-hero-overlay { transition: opacity 0.12s ease-out; }
+  .hb-hero-scroll { transition: opacity 0.1s ease-out, color .2s; }
+  [data-hero-video] { transition: transform 0.1s linear; }
+
+  /* Partner nav button: blue variant once scrolled past hero */
+  .q-top.scrolled .q-btn.outline {
+    background: var(--q-blue-hover) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .q-top.scrolled .q-btn.outline:hover {
+    background: var(--q-blue) !important;
   }
 
   /* Soft scroll indicator, bottom center */
@@ -1857,7 +1864,7 @@
   <div class="hb-hero-overlay">
     <div class="hb-hero-overlay-inner">
       <div class="hb-hero-copy">
-        <h1 id="hero-heading">The new physical. <em style="font-style: normal; color: rgb(246, 242, 236);">Rebuilt around your biology.</em></h1>
+        <h1 id="hero-heading">The new physical. Rebuilt around your <em>biology</em>.</h1>
         <p class="sub">Whole-body MRI, biomarkers, genetics, wearable data, medical history, and physician review, captured as a comprehensive baseline, then compared against every visit after.</p>
         <div class="hb-ctas">
           <a class='q-btn primary lg' href='https://q.bio/book'>Book the Q Exam</a>
@@ -1866,27 +1873,18 @@
       </div>
       <div class="hb-hero-facts" aria-hidden="true">
         <div class="hb-hero-fact">
-          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <span class="hb-fact-value">FDA-cleared</span>
         </div>
         <div class="hb-hero-fact">
-          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span class="hb-fact-value">Redwood City, CA</span>
         </div>
         <div class="hb-hero-fact">
-          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           <span class="hb-fact-value">Founded 2015</span>
         </div>
       </div>
     </div>
   </div>
 
-  <a class="hb-hero-scroll" href="index.html#about" aria-label="Scroll to content">
-    <span>Scroll</span>
-    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M6 9l6 6 6-6"/>
-    </svg>
-  </a>
 </section>
 
 
@@ -1960,53 +1958,13 @@
   </div>
 </section>
 
-<!-- ======================= WHY IT MATTERS ======================= -->
-<section class="q-section" data-screen-label="02 Why it matters">
-  <div class="q-wrap">
-    <div class="h-h fade-up">
-      <span class="num">02 · Why it matters</span>
-      <div>
-        <h2>Health isn't episodic, it's <em>longitudinal</em>.</h2>
-        <p>Your annual physical was built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
-      </div>
-    </div>
-
-    <div class="h-stats fade-up">
-      <article>
-        <span class="ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/></svg>
-        </span>
-        <span class="v">5<span class="u">inputs</span></span>
-        <h3>Captured together at baseline</h3>
-        <p>MRI, biomarkers, genetics, wearables, and physician review, in one visit, not five appointments.</p>
-      </article>
-      <article>
-        <span class="ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l7 4-7 4-7-4 7-4z"/><path d="M3 11l7 4 7-4"/></svg>
-        </span>
-        <span class="v">1<span class="u">record</span></span>
-        <h3>Read as one record</h3>
-        <p>Multimodal findings interpreted in context, not as five disconnected reports living in separate portals.</p>
-      </article>
-      <article>
-        <span class="ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11M11 4l3 3-3 3"/><path d="M17 13H6M9 16l-3-3 3-3"/></svg>
-        </span>
-        <span class="v">YoY<span class="u">compared</span></span>
-        <h3>Every exam is a comparison</h3>
-        <p>The first Q Exam sets the baseline. Each following exam is read against the member's own prior measurements.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ======================= HOW IT WORKS ======================= -->
-<section class="q-section h-howit" data-screen-label="03 How it works" aria-labelledby="howit-heading">
+<section class="q-section h-howit" data-screen-label="02 How it works" aria-labelledby="howit-heading">
   <div class="q-wrap">
     <div class="h-h fade-up">
-      <span class="num">03 · How it works</span>
+      <span class="num">02 · How it works</span>
       <div>
-        <h2 id="howit-heading">Our AI measures more. Built and calibrated over <em>15 years</em>.</h2>
+        <h2 id="howit-heading">Our AI measures more. Built and <em>calibrated over 15 years</em>.</h2>
         <p class="sub">Constellation, Q Bio&rsquo;s FDA-cleared image-analysis software, sees the MRI as data, segmenting organs and tissues, quantifying key measurements, and organizing results for radiologist and physician review.</p>
       </div>
     </div>
@@ -2049,12 +2007,52 @@
   </div>
 </section>
 
+<!-- ======================= WHY IT MATTERS ======================= -->
+<section class="q-section" data-screen-label="03 Why it matters">
+  <div class="q-wrap">
+    <div class="h-h fade-up">
+      <span class="num">03 · Why it matters</span>
+      <div>
+        <h2>Health isn't episodic, it's <em>longitudinal</em>.</h2>
+        <p>Your annual physical was built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
+      </div>
+    </div>
+
+    <div class="h-stats fade-up">
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/></svg>
+        </span>
+        <span class="v">5<span class="u">inputs</span></span>
+        <h3>Captured together at baseline</h3>
+        <p>MRI, biomarkers, genetics, wearables, and physician review, in one visit, not five appointments.</p>
+      </article>
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3l7 4-7 4-7-4 7-4z"/><path d="M3 11l7 4 7-4"/></svg>
+        </span>
+        <span class="v">1<span class="u">record</span></span>
+        <h3>Read as one record</h3>
+        <p>Multimodal findings interpreted in context, not as five disconnected reports living in separate portals.</p>
+      </article>
+      <article>
+        <span class="ico" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11M11 4l3 3-3 3"/><path d="M17 13H6M9 16l-3-3 3-3"/></svg>
+        </span>
+        <span class="v">YoY<span class="u">compared</span></span>
+        <h3>Every exam is a comparison</h3>
+        <p>The first Q Exam sets the baseline. Each following exam is read against the member's own prior measurements.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ======================= INSIDE THE DASHBOARD (merged: was 07 + 08) ======================= -->
 <section class="q-section" data-screen-label="04 Inside the Dashboard">
   <div class="q-wrap">    <div class="h-h fade-up">
       <span class="num">04 &middot; Inside the Dashboard</span>
       <div>
-        <h2>The Q Bio Health Dashboard: Your <em>Exam Visualised</em></h2>
+        <h2>The Q Bio Health Dashboard: <em>Your Exam Visualised</em></h2>
         <p>Look inside our dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
       </div>
     </div>
@@ -2137,7 +2135,10 @@
         <p>Partner with Q Bio to offer your patients the most comprehensive health assessment available. Rich data integration supports better preventive care decisions.</p>
       </div>
       <div class="h-final-actions">
-        <a class='q-btn primary lg' href='https://q.bio/partners-contact'>
+        <a class='q-btn primary lg' href='https://q.bio/book'>
+          <span>Book the Q Exam</span>
+        </a>
+        <a class='q-btn outline lg' href='https://q.bio/partners-contact'>
           <span>Partner With Us</span>
         </a>
         <span class="meta">Advanced health intelligence for your patients</span>
