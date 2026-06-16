@@ -356,7 +356,7 @@
     padding-top: 40px;
     border-top: 1px solid rgba(7,32,63,0.10);
   }
-  .h-h .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; color: var(--q-blue); text-transform: uppercase; }
+  .h-h .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; color: var(--fg-3); text-transform: uppercase; }
   .h-h h2 {
     font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 300;
@@ -448,7 +448,8 @@
   }
   .h-acad-logos li:hover img { filter: none; opacity: 1; }
 
-  /* Mission block (no headline — lead paragraph treatment) */
+  /* Mission block — full-width paragraph, no side label */
+  .h-about-mission { display: block !important; }
   .h-about-mission p {
     margin: 0;
     max-width: 56ch;
@@ -1248,7 +1249,7 @@
   .h-final h2 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
   .h-final p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 22px 0 0; max-width: 46ch; }
   .h-final-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
-  .h-final-actions .q-btn { justify-content: space-between; width: 100%; height: 56px; padding: 0 22px; font-size: 14.5px; letter-spacing: -0.005em; }
+  .h-final-actions .q-btn { justify-content: space-between; width: 100%; max-width: 280px; height: 56px; padding: 0 22px; font-size: 14.5px; letter-spacing: -0.005em; }
   .h-final-actions .q-btn .arr { width: 18px; height: 18px; }
   .h-final-actions .q-btn.primary { background: #fff !important; color: var(--ink-1) !important; border-color: #fff !important; }
   .h-final-actions .q-btn.outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
@@ -1501,7 +1502,7 @@
     display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
   }
   .hb-hero-overlay .q-btn.primary {
-    background: var(--ink-1) !important;
+    background: var(--q-blue) !important;
     color: #fff !important;
     border-color: transparent !important;
   }
@@ -1803,7 +1804,7 @@
       <span class="chip">
         <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
       </span>
-      <span class="wm">Q<span class="dot"> </span>Bio</span>
+      <span class="wm">Bio</span>
     </a>
     <nav class="q-nav" aria-label="Primary">
       <a href='https://q.bio/q-exam'>Q Exam</a>
@@ -1856,10 +1857,6 @@
   <div class="hb-hero-overlay">
     <div class="hb-hero-overlay-inner">
       <div class="hb-hero-copy">
-        <p class="hb-location">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Take the Q Exam at our Redwood City Centre, CA
-        </p>
         <h1 id="hero-heading">The new physical. <em style="font-style: normal; color: rgb(246, 242, 236);">Rebuilt around your biology.</em></h1>
         <p class="sub">Whole-body MRI, biomarkers, genetics, wearable data, medical history, and physician review, captured as a comprehensive baseline, then compared against every visit after.</p>
         <div class="hb-ctas">
@@ -1873,8 +1870,8 @@
           <span class="hb-fact-value">FDA-cleared</span>
         </div>
         <div class="hb-hero-fact">
-          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
-          <span class="hb-fact-value">Physician reviews</span>
+          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="hb-fact-value">Redwood City, CA</span>
         </div>
         <div class="hb-hero-fact">
           <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -1907,7 +1904,6 @@
 
     <!-- Mission — full-width paragraph -->
     <div class="h-about-sub h-about-mission fade-up">
-      <span class="se">Mission</span>
       <p>We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable. The Q Exam delivers personalised insights that predict health changes and enable early action.</p>
     </div>
 
@@ -1948,7 +1944,7 @@
         <span class="e">The Q Exam</span>
         <span class="loc">Redwood City, CA</span>
       </div>
-      <h3 id="convert-heading">Go beyond the basics. Map what matters.</h3>
+      <h3 id="convert-heading">Go beyond the basics. <em>Map what matters.</em></h3>
       <p>Discover what your future health depends on.</p>
       <ul>
         <li>75 minutes at our Redwood City, California centre</li>
@@ -1970,7 +1966,7 @@
     <div class="h-h fade-up">
       <span class="num">02 · Why it matters</span>
       <div>
-        <h2>Health isn't episodic, it's longitudinal.</h2>
+        <h2>Health isn't episodic, it's <em>longitudinal</em>.</h2>
         <p>Your annual physical was built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
       </div>
     </div>
@@ -2010,7 +2006,7 @@
     <div class="h-h fade-up">
       <span class="num">03 · How it works</span>
       <div>
-        <h2 id="howit-heading">Our AI measures more. Built and calibrated over 15 years.</h2>
+        <h2 id="howit-heading">Our AI measures more. Built and calibrated over <em>15 years</em>.</h2>
         <p class="sub">Constellation, Q Bio&rsquo;s FDA-cleared image-analysis software, sees the MRI as data, segmenting organs and tissues, quantifying key measurements, and organizing results for radiologist and physician review.</p>
       </div>
     </div>
@@ -2058,7 +2054,7 @@
   <div class="q-wrap">    <div class="h-h fade-up">
       <span class="num">04 &middot; Inside the Dashboard</span>
       <div>
-        <h2>The Q Bio Health Dashboard: Your Exam Visualised</h2>
+        <h2>The Q Bio Health Dashboard: Your <em>Exam Visualised</em></h2>
         <p>Look inside our dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
       </div>
     </div>
@@ -2137,7 +2133,7 @@
   <div class="q-wrap">
     <article class="h-final fade-up">
       <div>
-        <h2>Creating the future of healthcare</h2>
+        <h2>Creating the <em>future</em> of healthcare</h2>
         <p>Partner with Q Bio to offer your patients the most comprehensive health assessment available. Rich data integration supports better preventive care decisions.</p>
       </div>
       <div class="h-final-actions">
@@ -2178,7 +2174,7 @@
         <span class="chip">
           <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
         </span>
-        <span class="wm">Q<span class="dot"> </span>Bio</span>
+        <span class="wm">Bio</span>
       </a>
       <p class="sub">Q Bio is a health technology company that delivers the Q Exam and the Q Bio Health Dashboard — directly at our Redwood City clinic and through enterprise partners.</p>
       <p class="sub">Redwood City, CA · <a href='https://q.bio/clinic'>Visit our clinic →</a><br><a href="mailto:hello@q.bio">hello@q.bio</a></p>

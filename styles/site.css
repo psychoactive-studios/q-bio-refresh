@@ -123,10 +123,10 @@ img { max-width: 100%; display: block; }
    blocks (.q-actions .ghost, .q-menu-btn) automatically pick the right state
    without needing per-page edits. */
 .q-top {
-  --topbar-bg: rgba(255,255,255,0.82);
+  --topbar-bg: rgba(255,255,255,0.88);
   --topbar-border: rgba(7,32,63,0.08);
-  --topbar-shadow: 0 6px 24px -16px rgba(7,32,63,0.18);
-  --topbar-blur: saturate(160%) blur(14px);
+  --topbar-shadow: 0 4px 24px -8px rgba(7,32,63,0.14), 0 1px 0 rgba(7,32,63,0.04);
+  --topbar-blur: saturate(160%) blur(16px);
   --topbar-ink: var(--ink-1);
   --topbar-ink-soft: var(--fg-3);
   --topbar-wordmark: var(--ink-1);
@@ -140,37 +140,38 @@ img { max-width: 100%; display: block; }
   --topbar-primary-bg: var(--ink-1);
   --topbar-primary-ink: #fff;
 
-  position: sticky; top: 0; z-index: 50;
+  /* Floating pill — fixed position, centred, inset from viewport edges */
+  position: fixed;
+  top: clamp(8px, 1vw, 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2 * clamp(16px, 2.5vw, 32px));
+  max-width: var(--max);
+  z-index: 50;
+  border-radius: 100px;
   background: var(--topbar-bg);
-  border-bottom: 1px solid var(--topbar-border);
+  border: 1px solid var(--topbar-border);
   box-shadow: var(--topbar-shadow);
   backdrop-filter: var(--topbar-blur);
   -webkit-backdrop-filter: var(--topbar-blur);
-  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease, top .25s ease;
 }
 
-/* Transparent state — landing page only, only while still above the hero.
-   Text colors locked at full white with a heavier shadow so legibility holds
-   across both dark and bright video frames. */
-body.has-hero-overlay .q-top {
-  /* Lift the topbar out of flow so the hero can extend up under it. */
-  position: fixed;
-  top: 0; left: 0; right: 0;
-}
+/* Over-hero state: frosted glass pill so it stays visible on the dark video */
 body.has-hero-overlay .q-top:not(.scrolled) {
-  --topbar-bg: transparent;
-  --topbar-border: transparent;
-  --topbar-shadow: none;
-  --topbar-blur: none;
+  --topbar-bg: rgba(255,255,255,0.12);
+  --topbar-border: rgba(255,255,255,0.18);
+  --topbar-shadow: 0 4px 24px -8px rgba(0,0,0,0.22);
+  --topbar-blur: saturate(140%) blur(12px);
   --topbar-ink: #fff;
-  --topbar-ink-soft: #fff;
+  --topbar-ink-soft: rgba(255,255,255,0.78);
   --topbar-wordmark: #fff;
-  --topbar-text-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 0 18px rgba(0,0,0,0.35);
+  --topbar-text-shadow: 0 1px 2px rgba(0,0,0,0.4);
   --topbar-action-ink: #fff;
   --topbar-action-hover-bg: rgba(255,255,255,0.14);
   --topbar-action-hover-ink: #fff;
   --topbar-menu-border: rgba(255,255,255,0.32);
-  --topbar-menu-bg: transparent;
+  --topbar-menu-bg: rgba(255,255,255,0.14);
   --topbar-menu-ink: #fff;
   --topbar-primary-bg: var(--q-blue);
   --topbar-primary-ink: #fff;
@@ -178,7 +179,7 @@ body.has-hero-overlay .q-top:not(.scrolled) {
 
 /* Token consumers — apply state-driven colors everywhere. Scoped under .q-top
    so they win against per-page inline <style> rules without page edits. */
-.q-top .q-brand .wm { background-color: var(--topbar-wordmark); }
+.q-top .q-brand .wm { color: var(--topbar-wordmark); }
 .q-top .q-nav a {
   color: var(--topbar-ink-soft);
   text-shadow: var(--topbar-text-shadow);
@@ -214,13 +215,11 @@ body.has-hero-overlay .q-top:not(.scrolled) {
   filter: none;
 }
 .q-top-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 14px var(--pad);
+  padding: 10px 22px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 .q-brand { display: inline-flex; align-items: center; gap: 10px; }
 .q-brand .chip {
@@ -230,17 +229,12 @@ body.has-hero-overlay .q-top:not(.scrolled) {
 }
 .q-brand .wm {
   display: inline-block;
-  width: 64px;
-  height: 30px;
-  -webkit-mask: url('../assets/logos/qbio-wordmark-white.png') no-repeat center / contain;
-          mask: url('../assets/logos/qbio-wordmark-white.png') no-repeat center / contain;
-  background-color: #fff;
-  color: transparent;
-  font-size: 0;
-  overflow: hidden;
-  text-indent: -9999px;
-  white-space: nowrap;
-  transition: background-color .25s ease;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--ink-1);
+  transition: color .25s ease;
 }
 .q-brand .wm .dot { display: none; }
 .q-nav {
@@ -407,4 +401,4 @@ body.has-hero-overlay .q-top:not(.scrolled) {
 /* End of file — topbar styles tokenized at the top. */
 
 /* Footer logo — render in black (mask-fill) */
-.q-foot .q-brand .wm { background-color: #000; }
+.q-foot .q-brand .wm { color: var(--ink-1); }
