@@ -12,8 +12,8 @@
   var DUR_OUT = 0.65;
 
   var FILLS = {
-    primary : 'rgba(11,94,208,0.92)',
-    blue    : 'rgba(11,94,208,0.92)',
+    primary : 'rgba(5,35,80,0.88)',
+    blue    : 'rgba(5,35,80,0.88)',
     outline : 'rgba(7,32,63,0.90)',
     ghost   : 'rgba(7,32,63,0.06)',
   };

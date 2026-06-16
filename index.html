@@ -799,6 +799,8 @@
   .h-stats-ctas {
     display: flex; gap: 12px; justify-content: center; margin-top: 40px;
   }
+  .h-stats-ctas .q-btn.outline { background: #242a20 !important; color: #fff !important; border-color: transparent !important; }
+  .h-stats-ctas .q-btn.outline:hover { background: #1a1f17 !important; }
   @media (max-width: 720px) { .h-stats { grid-template-columns: 1fr; } }
 
   /* ---------- Why it matters — 2-col compare ---------- */
@@ -1243,10 +1245,11 @@
     color: #fff;
     border-radius: 4px;
     padding: clamp(56px, 8vw, 112px) clamp(28px, 5vw, 80px);
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: clamp(32px, 5vw, 64px);
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    gap: clamp(24px, 4vw, 40px);
   }
   .h-final h2 {
     font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
@@ -1256,14 +1259,13 @@
   }
   .h-final h2 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
   .h-final p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 22px 0 0; max-width: 46ch; }
-  .h-final-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-  .h-final-actions .q-btn { justify-content: center; width: auto; min-width: 160px; max-width: 220px; height: 50px; padding: 0 26px; font-size: 14px; letter-spacing: -0.005em; }
+  .h-final-actions { display: flex; flex-direction: row; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
+  .h-final-actions .q-btn { justify-content: center; width: 220px; height: 50px; padding: 0 26px; font-size: 14px; letter-spacing: -0.005em; }
   .h-final-actions .q-btn.primary { background: var(--q-blue) !important; color: #fff !important; border-color: transparent !important; }
   .h-final-actions .q-btn.primary:hover { background: var(--q-blue-hover) !important; }
   .h-final-actions .q-btn.outline { background: #fff !important; color: var(--ink-1) !important; border-color: transparent !important; }
   .h-final-actions .q-btn.outline:hover { background: rgba(255,255,255,0.88) !important; }
-  .h-final-actions .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 8px; }
-  @media (max-width: 880px) { .h-final { grid-template-columns: 1fr; } }
+  .h-final-actions .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.5); width: 100%; text-align: center; margin-top: 4px; }
 
   /* ---------- Section padding override ---------- */
   .q-section { padding: 0 var(--pad) clamp(56px, 7vw, 112px); }
@@ -2219,14 +2221,12 @@
 <section id="about" class="c-color-block" data-screen-label="01 What is Q Bio" aria-labelledby="about-heading">
   <div class="o-container">
 
-    <div class="c-text-block fade-up">
-      <h2 id="about-heading" class="t-display-2">
-        Q Bio. <span class="accent">Quantitative biology</span><br>
-        for preventive care.
-      </h2>
-      <p class="c-intro-body">
-        We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable.
-      </p>
+    <div class="h-h fade-up">
+      <span class="num">01 · The company</span>
+      <div>
+        <h2 id="about-heading">Q Bio. <em>Quantitative biology</em><br>for preventive care.</h2>
+        <p>We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable.</p>
+      </div>
     </div>
 
     <div class="c-grid fade-up">
@@ -2507,21 +2507,15 @@
   </div>
 </section>
 
-<!-- ======================= INSIDE THE DASHBOARD (merged: was 07 + 08) ======================= -->
-<section class="q-section" data-screen-label="04 Inside the Dashboard">
-  <div class="q-wrap">    <div class="h-h fade-up">
-      <span class="num">04 &middot; Inside the Dashboard</span>
-      <div>
-        <h2>The Q Bio Health Dashboard: <em>Your Exam Visualised</em>.</h2>
-        <p>Look inside our dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
-      </div>
-    </div>
+<!-- ======================= INSIDE THE DASHBOARD ======================= -->
+<section class="scan-section" id="scanSection" data-screen-label="04 Inside the Dashboard">
+  <div class="scan-inner">
 
     <!-- Left: text content -->
     <div class="scan-left">
 
       <div class="scan-header">
-        <h2 id="dashboard-heading" class="scan-title">The exam captures the data. <span class="scan-title-accent">The dashboard makes it visible.</span></h2>
+        <h2 class="scan-title">The exam captures the data. <span class="scan-title-accent">The dashboard makes it visible.</span></h2>
         <p class="scan-intro">A look inside the Q Bio Health Dashboard, the longitudinal record where every Q Exam is read against the member's own prior measurements.</p>
       </div>
 
@@ -2656,5 +2650,42 @@
 <script src="scripts/fade-up.js"></script>
 <script src="scripts/motion.umd.js"></script>
 <script src="scripts/btn-fills.js"></script>
+<script>
+  (function () {
+    var section = document.getElementById('scanSection');
+    if (!section) return;
+    var points = Array.from(document.querySelectorAll('.scan-point'));
+    var pips = Array.from(document.querySelectorAll('.progress-pip'));
+    var numPoints = points.length;
+
+    function activate(index) {
+      points.forEach(function(p, i) { p.classList.toggle('is-active', i === index); });
+      pips.forEach(function(p, i) { p.classList.toggle('is-active', i === index); });
+    }
+
+    function onScroll() {
+      if (window.innerWidth <= 991) return;
+      var rect = section.getBoundingClientRect();
+      var sectionH = section.offsetHeight;
+      var scrolled = -rect.top;
+      var scrollable = sectionH - window.innerHeight;
+      var progress = Math.max(0, Math.min(1, scrolled / scrollable));
+      var index = Math.min(numPoints - 1, Math.floor(progress * numPoints));
+      activate(index);
+    }
+
+    pips.forEach(function(pip, i) {
+      pip.addEventListener('click', function() {
+        var sectionTop = section.offsetTop;
+        var sectionH = section.offsetHeight;
+        var scrollable = sectionH - window.innerHeight;
+        window.scrollTo({ top: sectionTop + (i / numPoints) * scrollable, behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 </body>
 </html>
