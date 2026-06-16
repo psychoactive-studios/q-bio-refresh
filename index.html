@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="styles/site.css">
 <link rel="stylesheet" href="styles/annotated-dashboard.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
 
 <!-- Hero poster: preload so the first paint of the hero is never empty. -->
 <link rel="preload" as="image" href="assets/videos/clinic-hero-poster.jpg" fetchpriority="high">
@@ -65,15 +65,23 @@
   body { background: #FBFAF7; color: var(--ink-1); }
 
   /* ---------- Topbar: solid, no hero overlay ---------- */
-  /* Use site.css default sticky topbar. Mobile primary CTA only. */
-  .q-top-inner { gap: 24px; }
-  .q-actions .ghost {
-    font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.9);
-    padding: 10px 14px; border-radius: var(--r-md);
+  .q-top-inner { gap: 16px; }
+  /* icon-btn color follows topbar state */
+  .q-top .q-btn.icon-btn { color: var(--topbar-action-ink); }
+  .q-top .q-btn.icon-btn:hover { background: var(--topbar-action-hover-bg); }
+  /* partner button: white on opaque nav, white on transparent hero */
+  .q-top .q-btn.outline {
+    background: rgba(255,255,255,0.18) !important;
+    color: var(--topbar-ink) !important;
+    border-color: transparent !important;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
   }
-  .q-actions .ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .q-top .q-btn.outline:hover {
+    background: rgba(255,255,255,0.30) !important;
+  }
   @media (max-width: 880px) {
-    .q-actions .ghost { display: none; } /* secondary CTA goes into drawer */
+    .q-top .q-btn.outline { display: none; } /* goes into drawer on mobile */
   }
   /* Mobile menu drawer */
   .q-menu-btn {
@@ -153,7 +161,7 @@
   .h-eyebrow .sep { color: rgba(7,32,63,0.2); }
   .h-eyebrow .meta { color: var(--fg-3); }
   .h-hero h1 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 300;
     font-size: clamp(40px, 5.4vw, 78px);
     line-height: 1.0;
@@ -161,7 +169,6 @@
     color: var(--ink-1);
     margin: 22px 0 0;
     max-width: 18ch;
-    font-feature-settings: 'ss01';
     text-wrap: balance;
   }
   .h-hero h1 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
@@ -298,7 +305,7 @@
     display: flex; align-items: baseline; gap: 12px; justify-content: space-between;
   }
   .h-preview-main .kv .label { font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--fg-3); }
-  .h-preview-main .kv .val { font-family: 'Fraunces', serif; font-weight: 300; font-size: 24px; color: var(--ink-1); letter-spacing: -0.015em; }
+  .h-preview-main .kv .val { font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-size: 24px; color: var(--ink-1); letter-spacing: -0.015em; }
   .h-preview-main .chart {
     height: 110px;
     background: linear-gradient(180deg, rgba(15,117,255,0.07), rgba(15,117,255,0));
@@ -341,17 +348,17 @@
 
   /* ---------- Section heads (reused .h-h pattern) ---------- */
   .h-h {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 40px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
     margin-bottom: 48px;
     padding-top: 40px;
     border-top: 1px solid rgba(7,32,63,0.10);
   }
-  .h-h .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; color: var(--q-blue); text-transform: uppercase; padding-top: 6px; }
+  .h-h .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; color: var(--fg-3); text-transform: uppercase; }
   .h-h h2 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 300;
     font-size: clamp(32px, 4.2vw, 56px);
     line-height: 1.04;
@@ -361,8 +368,8 @@
     max-width: 22ch;
   }
   .h-h h2 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
-  .h-h p { font-size: 15.5px; line-height: 1.6; color: var(--fg-1); max-width: 60ch; margin: 18px 0 0; }
-  @media (max-width: 880px) { .h-h { grid-template-columns: 1fr; gap: 12px; padding-top: 32px; margin-bottom: 32px; } }
+  .h-h p { font-size: 15.5px; line-height: 1.6; color: var(--fg-1); max-width: 60ch; margin: 10px 0 0; }
+  @media (max-width: 880px) { .h-h { gap: 10px; padding-top: 32px; margin-bottom: 32px; } }
 
   /* ---------- What the Q Exam includes — 6-card grid ---------- */
   .h-incl {
@@ -441,11 +448,12 @@
   }
   .h-acad-logos li:hover img { filter: none; opacity: 1; }
 
-  /* Mission block (no headline — lead paragraph treatment) */
+  /* Mission block — full-width paragraph, no side label */
+  .h-about-mission { display: block !important; }
   .h-about-mission p {
     margin: 0;
     max-width: 56ch;
-    font-family: 'Fraunces', serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 300;
     font-size: clamp(18px, 1.4vw, 22px);
     line-height: 1.45;
@@ -630,7 +638,7 @@
     color: var(--q-blue); font-weight: 600;
   }
   .h-about-points h3 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(20px, 1.8vw, 24px);
     line-height: 1.2; letter-spacing: -0.018em;
     color: var(--ink-1); margin: 0; max-width: 22ch;
@@ -662,7 +670,7 @@
     color: var(--q-blue);
   }
   .h-what h3 {
-    font-family: 'Fraunces', serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 300;
     font-size: clamp(20px, 1.8vw, 24px);
     line-height: 1.2;
@@ -764,11 +772,10 @@
     color: var(--q-blue);
   }
   .h-stats .v {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(44px, 5.4vw, 68px);
     line-height: 0.95; letter-spacing: -0.025em;
     color: var(--ink-1);
-    font-feature-settings: 'ss01';
   }
   .h-stats .v .u {
     font-family: var(--font-display);
@@ -799,7 +806,7 @@
   .h-compare .col-b { background: var(--ink-1); color: #fff; }
   .h-compare .e { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--fg-3); }
   .h-compare .col-b .e { color: #6FA9FF; }
-  .h-compare h3 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -0.018em; margin: 0; color: var(--ink-1); }
+  .h-compare h3 { font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -0.018em; margin: 0; color: var(--ink-1); }
   .h-compare .col-b h3 { color: #fff; }
   .h-compare h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
   .h-compare .col-b h3 em { color: #6FA9FF; }
@@ -817,7 +824,7 @@
     padding: 22px clamp(28px, 3vw, 44px);
     background: var(--warm-1);
     border-top: 1px solid rgba(7,32,63,0.08);
-    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-style: italic;
     font-size: 18px; color: var(--ink-1);
   }
   @media (max-width: 880px) {
@@ -845,7 +852,7 @@
     color: #6FA9FF;
   }
   .h-platform-ai .copy h3 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(22px, 2.4vw, 30px);
     line-height: 1.15; letter-spacing: -0.02em;
     color: #fff; margin: 0; max-width: 22ch;
@@ -963,7 +970,7 @@
   .h-track .bar .loc { color: var(--fg-3); }
   .h-track.dark .bar .loc { color: rgba(255,255,255,0.55); }
   .h-track h3 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(26px, 3vw, 38px);
     line-height: 1.08; letter-spacing: -0.02em;
     color: var(--ink-1); margin: 0; max-width: 20ch;
@@ -1013,7 +1020,7 @@
   }
   .h-dash .e { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: #6FA9FF; }
   .h-dash h3 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(28px, 3.4vw, 46px);
     line-height: 1.06; letter-spacing: -0.022em;
     color: #fff; margin: 18px 0 0; max-width: 18ch;
@@ -1103,7 +1110,7 @@
     border-bottom: 1px solid rgba(7,32,63,0.06);
   }
   .h-dash-card .stat .l { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--fg-3); }
-  .h-dash-card .stat .v { font-family: 'Fraunces', serif; font-weight: 300; font-size: 28px; letter-spacing: -0.018em; color: var(--ink-1); line-height: 1; margin-top: 6px; }
+  .h-dash-card .stat .v { font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-size: 28px; letter-spacing: -0.018em; color: var(--ink-1); line-height: 1; margin-top: 6px; }
   .h-dash-card .stat .v .u { font-size: 11px; color: var(--fg-3); font-weight: 500; margin-left: 4px; font-family: var(--font-display); }
   .h-dash-card .stat .d { font-family: var(--font-mono); font-size: 10px; color: var(--c-green-text); margin-top: 4px; }
   .h-dash-card .stat .d.amber { color: var(--c-yellow-text); }
@@ -1174,7 +1181,7 @@
   }
   .h-proof .copy { padding: clamp(28px, 3.6vw, 52px); display: flex; flex-direction: column; gap: 22px; justify-content: center; }
   .h-proof .e { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-3); letter-spacing: 1.4px; text-transform: uppercase; }
-  .h-proof h3 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink-1); margin: 0; max-width: 22ch; }
+  .h-proof h3 { font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink-1); margin: 0; max-width: 22ch; }
   .h-proof h3 em { font-style: normal; color: var(--q-blue); font-weight: 300; }
   .h-proof p { font-size: 14.5px; line-height: 1.6; color: var(--fg-1); margin: 0; }
   .h-proof .link {
@@ -1234,7 +1241,7 @@
     align-items: center;
   }
   .h-final h2 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(36px, 5vw, 68px);
     line-height: 1.02; letter-spacing: -0.025em;
     color: #fff; margin: 0; max-width: 16ch;
@@ -1242,7 +1249,7 @@
   .h-final h2 em { font-style: normal; color: #6FA9FF; font-weight: 300; }
   .h-final p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 22px 0 0; max-width: 46ch; }
   .h-final-actions { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
-  .h-final-actions .q-btn { justify-content: space-between; width: 100%; height: 56px; padding: 0 22px; font-size: 14.5px; letter-spacing: -0.005em; }
+  .h-final-actions .q-btn { justify-content: space-between; width: 100%; max-width: 280px; height: 56px; padding: 0 22px; font-size: 14.5px; letter-spacing: -0.005em; }
   .h-final-actions .q-btn .arr { width: 18px; height: 18px; }
   .h-final-actions .q-btn.primary { background: #fff !important; color: var(--ink-1) !important; border-color: #fff !important; }
   .h-final-actions .q-btn.outline { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
@@ -1277,12 +1284,11 @@
   }
   .find-grid .dark .kind { color: #6FA9FF; }
   .find-stat .big {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(80px, 10vw, 148px);
     line-height: 0.9; letter-spacing: -0.04em;
     color: var(--q-blue);
     margin: 4px 0 0;
-    font-feature-settings: 'ss01';
   }
   .find-stat .big .pct { font-size: 0.55em; color: var(--fg-3); margin-left: 4px; letter-spacing: -0.02em; }
   .find-stat .big .ph {
@@ -1304,7 +1310,7 @@
   }
   .find-quote blockquote {
     margin: 0; padding: 0;
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: clamp(20px, 1.6vw, 23px);
     line-height: 1.3; letter-spacing: -0.012em;
     color: var(--ink-1);
@@ -1314,7 +1320,7 @@
   .find-quote.dark blockquote { color: #fff; }
   .find-quote blockquote::before {
     content: "\201C";
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300;
     font-size: 2.2em; color: var(--q-blue);
     display: block; line-height: 0.5; margin-bottom: 14px;
   }
@@ -1402,27 +1408,70 @@
   }
   .hb-hero-overlay {
     position: absolute; z-index: 2;
-    left: clamp(24px, 5vw, 80px);
-    right: clamp(24px, 5vw, 80px);
-    bottom: clamp(64px, 8vw, 104px);
-    max-width: 720px;
-    display: flex; flex-direction: column;
-    align-items: flex-start;
+    left: 0; right: 0;
+    bottom: 0;
+    padding: 0 var(--pad);
     color: var(--warm-1);
   }
-  .hb-hero-overlay .hb-eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--font-mono);
-    font-size: 11.5px; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--warm-1); opacity: 0.85;
-    margin-bottom: 22px;
+  .hb-hero-overlay-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-bottom: clamp(64px, 8vw, 104px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: clamp(24px, 4vw, 60px);
   }
-  .hb-hero-overlay .hb-eyebrow .sep { color: rgba(242,237,227,0.45); }
-  .hb-hero-overlay .hb-eyebrow .meta { color: rgba(242,237,227,0.85); }
+  .hb-hero-copy {
+    display: flex; flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+  }
+  .hb-hero-facts {
+    flex: none;
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+  .hb-hero-fact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 0 clamp(16px, 1.8vw, 24px);
+  }
+  .hb-hero-fact + .hb-hero-fact {
+    border-left: 1px solid rgba(242,237,227,0.22);
+  }
+  .hb-hero-fact:first-child { padding-left: 0; }
+  .hb-hero-fact .hb-fact-icon { color: rgba(242,237,227,0.6); flex: none; }
+  .hb-hero-fact .hb-fact-value {
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, 1.15vw, 17px);
+    line-height: 1.25;
+    color: var(--warm-1);
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.18);
+  }
+  .hb-location {
+    margin: 0 0 18px;
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(242,237,227,0.55);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .hb-location svg { flex: none; }
+  @media (max-width: 880px) {
+    .hb-hero-overlay-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+  }
+  @media (max-width: 600px) {
+    .hb-hero-facts { display: none; }
+  }
   .hb-hero-overlay h1 {
     margin: 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
     font-weight: 400;
     font-size: clamp(40px, 6.4vw, 88px);
     line-height: 1.02;
@@ -1430,7 +1479,6 @@
     color: var(--warm-1);
     max-width: 22ch;
     text-wrap: balance;
-    font-feature-settings: 'ss01';
     text-shadow: 0 1px 4px rgba(0,0,0,0.18);
   }
   .hb-hero-overlay h1 em {
@@ -1454,23 +1502,20 @@
     display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
   }
   .hb-hero-overlay .q-btn.primary {
-    background: #fff !important;
-    color: var(--ink-1) !important;
-    border-color: #fff !important;
-  }
-  .hb-hero-overlay .q-btn.primary:hover { filter: brightness(0.94); }
-  .hb-hero-overlay .q-btn.translucent {
-    background: rgba(255,255,255,0.18) !important;
+    background: var(--q-blue) !important;
     color: #fff !important;
     border-color: transparent !important;
-    -webkit-backdrop-filter: saturate(140%) blur(6px);
-    backdrop-filter: saturate(140%) blur(6px);
-    transition: background .2s ease, backdrop-filter .2s ease, -webkit-backdrop-filter .2s ease;
+  }
+  .hb-hero-overlay .q-btn.primary:hover {
+    background: var(--q-blue) !important;
+  }
+  .hb-hero-overlay .q-btn.translucent {
+    background: #fff !important;
+    color: var(--ink-1) !important;
+    border-color: transparent !important;
   }
   .hb-hero-overlay .q-btn.translucent:hover {
-    background: rgba(255,255,255,0.30) !important;
-    -webkit-backdrop-filter: saturate(160%) blur(12px);
-    backdrop-filter: saturate(160%) blur(12px);
+    background: rgba(255,255,255,0.88) !important;
   }
   .hb-hero-overlay .hb-secondary {
     margin: 28px 0 14px;
@@ -1684,7 +1729,7 @@
   }
   .dash-quote blockquote {
     margin: 0;
-    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif; font-weight: 300; font-style: italic;
     font-size: clamp(20px, 2.2vw, 28px);
     line-height: 1.3; letter-spacing: -0.015em;
     color: #fff; max-width: 56ch;
@@ -1709,6 +1754,43 @@
     margin-top: 24px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
   }
 
+  /* ---------- "Book the Q Exam" conversion section ---------- */
+  .h-convert-meta {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+  }
+
+  /* ---------- Enterprise partner feature cards ---------- */
+  .h-enterprise-cards {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .h-enterprise-cards > article {
+    background: rgba(255,255,255,0.06);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .h-enterprise-cards h4 {
+    font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    color: #fff; margin: 0; letter-spacing: -0.005em;
+  }
+  .h-enterprise-cards p {
+    margin: 0 !important; font-size: 13px !important;
+    line-height: 1.5; color: rgba(255,255,255,0.65) !important; max-width: none !important;
+  }
+  @media (max-width: 880px) {
+    .h-enterprise-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .h-enterprise-cards { grid-template-columns: 1fr; }
+  }
+
 </style>
 <noscript><style>.fade-up{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
@@ -1722,7 +1804,7 @@
       <span class="chip">
         <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
       </span>
-      <span class="wm">Q<span class="dot"> </span>Bio</span>
+      <span class="wm">Bio</span>
     </a>
     <nav class="q-nav" aria-label="Primary">
       <a href='https://q.bio/q-exam'>Q Exam</a>
@@ -1731,10 +1813,11 @@
       <a href='https://q.bio/about'>About</a>
     </nav>
     <div class="q-actions">
-      <a class='ghost' href='https://q.bio/partners-contact'>Partner with Q Bio</a>
-      <a class="ghost" href="https://dashboard.q.bio/">Login</a>
-      <a class='q-btn primary sm' href='https://q.bio/book'>Book the Q Exam
+      <a class="q-btn icon-btn" href="https://dashboard.q.bio/" aria-label="Login">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
       </a>
+      <a class='q-btn outline sm' href='https://q.bio/partners-contact'>Partner with Q Bio</a>
+      <a class='q-btn primary sm' href='https://q.bio/book'>Book the Q Exam</a>
     </div>
     <button class="q-menu-btn" aria-label="Open menu" data-menu-open>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -1772,22 +1855,33 @@
   <div class="hb-hero-gradient" aria-hidden="true"></div>
 
   <div class="hb-hero-overlay">
-    <span class="hb-eyebrow">
-      <span>Q Bio</span>
-      <span class="sep">·</span>
-      <span class="meta">The longitudinal physical exam</span>
-    </span>
-    <h1 id="hero-heading" >The physical exam, <em style="font-style: normal; color: rgb(246, 242, 236);">rebuilt around your biology.</em></h1>
-    <p class="sub">Whole-body MRI, biomarkers, genetics, wearable data, medical history, and physician review, captured as a comprehensive baseline, then compared against every visit after.</p>
-
-    <div class="hb-ctas">
-      <a class='q-btn primary lg' href='https://q.bio/book'>Book the Q Exam
-      </a>
-      <a class='q-btn translucent lg' href='https://q.bio/partners'>Partner with Q Bio</a>
+    <div class="hb-hero-overlay-inner">
+      <div class="hb-hero-copy">
+        <h1 id="hero-heading">The new physical. <em style="font-style: normal; color: rgb(246, 242, 236);">Rebuilt around your biology.</em></h1>
+        <p class="sub">Whole-body MRI, biomarkers, genetics, wearable data, medical history, and physician review, captured as a comprehensive baseline, then compared against every visit after.</p>
+        <div class="hb-ctas">
+          <a class='q-btn primary lg' href='https://q.bio/book'>Book the Q Exam</a>
+          <a class='q-btn translucent lg' href='https://q.bio/partners'>Partner with Q Bio</a>
+        </div>
+      </div>
+      <div class="hb-hero-facts" aria-hidden="true">
+        <div class="hb-hero-fact">
+          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span class="hb-fact-value">FDA-cleared</span>
+        </div>
+        <div class="hb-hero-fact">
+          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="hb-fact-value">Redwood City, CA</span>
+        </div>
+        <div class="hb-hero-fact">
+          <svg class="hb-fact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span class="hb-fact-value">Founded 2015</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <a class="hb-hero-scroll" href="index.html#trust" aria-label="Scroll to content">
+  <a class="hb-hero-scroll" href="index.html#about" aria-label="Scroll to content">
     <span>Scroll</span>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M6 9l6 6 6-6"/>
@@ -1795,37 +1889,6 @@
   </a>
 </section>
 
-<!-- ======================= TRUST BAND ======================= -->
-<section id="trust" class="q-section h-trust-band" aria-label="Why trust Q Bio">
-  <div class="q-wrap">
-    <ul class="h-trust-list">
-      <li>
-        <span class="h-trust-badge" aria-hidden="true">FDA</span>
-        <span><strong>FDA-cleared</strong> software (Constellation)</span>
-      </li>
-      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
-      <li>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>Redwood City, CA &middot; partner clinics</span>
-      </li>
-      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
-      <li>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <span>No ionizing radiation</span>
-      </li>
-      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
-      <li>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
-        <span>Physician review, every exam</span>
-      </li>
-      <li class="h-trust-sep" role="separator" aria-hidden="true"></li>
-      <li>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span>Founded 2015</span>
-      </li>
-    </ul>
-  </div>
-</section>
 
 <!-- ======================= WHAT IS Q BIO ======================= -->
 <section id="about" class="q-section h-about" data-screen-label="01 What is Q Bio" aria-labelledby="about-heading">
@@ -1841,8 +1904,7 @@
 
     <!-- Mission — full-width paragraph -->
     <div class="h-about-sub h-about-mission fade-up">
-      <span class="se">Mission</span>
-      <p>Q Bio was founded in 2015 to close the gap between what modern medicine can measure and what the annual physical actually captures. The Q Exam does it in one visit: whole-body MRI, 120+ blood biomarkers, genetics, wearable data, and a 45-minute physician review — stored in one record that gets more useful with every exam after.</p>
+      <p>We're bringing the physical exam of the future, now. Q Bio integrates the best of modern medical technology to make advanced preventive health more comprehensive, scalable, and actionable. The Q Exam delivers personalised insights that predict health changes and enable early action.</p>
     </div>
 
     <!-- Two-column split: anatomy figure + What the Q Exam delivers -->
@@ -1856,21 +1918,45 @@
         <div class="h-about-points">
           <header><span class="se">What the Q Exam delivers</span></header>
           <article>
-            <span class="e">Quantitative biology</span>
-            <h3>Organs, tissues, blood, and genes — measured in numbers, not impressions.</h3>
+            <span class="e">Quantitative Biology</span>
+            <h3>Clinical-grade measurement of the body.</h3>
           </article>
           <article>
-            <span class="e">For your care team</span>
-            <h3>Structured findings your physician receives and can act on, not another PDF to forward.</h3>
+            <span class="e">Guidance for your care team</span>
+            <h3>Better clinical insights, for you and your doctor.</h3>
           </article>
           <article>
-            <span class="e">A longitudinal record</span>
-            <h3>Every finding stored in one record, compared against every future exam.</h3>
+            <span class="e">A complete clinical record</span>
+            <h3>Data your physician can act on.</h3>
           </article>
         </div>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ======================= BOOK THE Q EXAM ======================= -->
+<section class="q-section" data-screen-label="Book the Q Exam" aria-labelledby="convert-heading">
+  <div class="q-wrap">
+    <div class="h-track dark fade-up">
+      <div class="bar">
+        <span class="e">The Q Exam</span>
+        <span class="loc">Redwood City, CA</span>
+      </div>
+      <h3 id="convert-heading">Go beyond the basics. <em>Map what matters.</em></h3>
+      <p>Discover what your future health depends on.</p>
+      <ul>
+        <li>75 minutes at our Redwood City, California centre</li>
+        <li>Early appointments available from 7am</li>
+        <li>Expert care from trained medical professionals</li>
+        <li>Fast results with your personalized health dashboard</li>
+      </ul>
+      <div class="ctas">
+        <a class='q-btn primary' href='https://q.bio/book'>Book Your Exam</a>
+        <span class="h-convert-meta">One exam. A lifetime of insight</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1880,8 +1966,8 @@
     <div class="h-h fade-up">
       <span class="num">02 · Why it matters</span>
       <div>
-        <h2>Physical exams today were designed for an era when health was episodic. Health today is longitudinal.</h2>
-        <p>Annual physicals were built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
+        <h2>Health isn't episodic, it's <em>longitudinal</em>.</h2>
+        <p>Your annual physical was built to flag what's wrong this year. The Q Exam captures a baseline that compounds with every visit.</p>
       </div>
     </div>
 
@@ -1908,7 +1994,7 @@
         </span>
         <span class="v">YoY<span class="u">compared</span></span>
         <h3>Every exam is a comparison</h3>
-        <p>The first Q Exam sets the baseline. Each one after is read against the member's own prior measurements.</p>
+        <p>The first Q Exam sets the baseline. Each following exam is read against the member's own prior measurements.</p>
       </article>
     </div>
   </div>
@@ -1920,8 +2006,8 @@
     <div class="h-h fade-up">
       <span class="num">03 · How it works</span>
       <div>
-        <h2 id="howit-heading">Our AI measures more. Your care team tells you what it means.</h2>
-        <p class="sub"><strong>Constellation</strong>, Q Bio&rsquo;s FDA-cleared image-analysis software, sees the MRI as data, segmenting organs and tissues, quantifying key measurements, and organizing results for radiologist and physician review. Every result lives in the <strong>Q Bio Health Dashboard</strong>, the longitudinal record that makes every future exam comparable to this one. A 45-minute physician consult walks you through it; you take the full record to your own physician.</p>
+        <h2 id="howit-heading">Our AI measures more. Built and calibrated over <em>15 years</em>.</h2>
+        <p class="sub">Constellation, Q Bio&rsquo;s FDA-cleared image-analysis software, sees the MRI as data, segmenting organs and tissues, quantifying key measurements, and organizing results for radiologist and physician review.</p>
       </div>
     </div>
 
@@ -1968,8 +2054,8 @@
   <div class="q-wrap">    <div class="h-h fade-up">
       <span class="num">04 &middot; Inside the Dashboard</span>
       <div>
-        <h2>The exam captures the data. <em>The dashboard makes it visible.</em></h2>
-        <p>A look inside the Q Bio Health Dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
+        <h2>The Q Bio Health Dashboard: Your <em>Exam Visualised</em></h2>
+        <p>Look inside our dashboard, the longitudinal record where every Q Exam is read against the member&rsquo;s own prior measurements.</p>
       </div>
     </div>
 
@@ -2047,17 +2133,32 @@
   <div class="q-wrap">
     <article class="h-final fade-up">
       <div>
-        <h2>One exam. <em>A foundation</em> for the next decade of care.</h2>
-        <p>Whether you want to offer the Q Exam to your members or patients or start your own baseline, both paths begin here.</p>
+        <h2>Creating the <em>future</em> of healthcare</h2>
+        <p>Partner with Q Bio to offer your patients the most comprehensive health assessment available. Rich data integration supports better preventive care decisions.</p>
       </div>
       <div class="h-final-actions">
         <a class='q-btn primary lg' href='https://q.bio/partners-contact'>
-          <span>Partner with Q Bio</span>
+          <span>Partner With Us</span>
         </a>
-        <a class='q-btn outline lg' href='https://q.bio/book'>
-          <span>Book the Q Exam</span>
-        </a>
-        <span class="meta">Or email <a href="mailto:hello@q.bio" style="color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.3);">hello@q.bio</a></span>
+        <span class="meta">Advanced health intelligence for your patients</span>
+      </div>
+      <div class="h-enterprise-cards">
+        <article>
+          <h4>Purpose-built platform</h4>
+          <p>A platform purpose-built to help clinics offer a new class of preventive service</p>
+        </article>
+        <article>
+          <h4>Best in class diagnostics</h4>
+          <p>Embedded in your clinic's model, with best in class diagnostics</p>
+        </article>
+        <article>
+          <h4>Successful deployment</h4>
+          <p>Deployed at Q Bio's clinic in Redwood City, CA, and other major longevity providers</p>
+        </article>
+        <article>
+          <h4>Clinical-grade stack</h4>
+          <p>Deep clinical-grade stack, customizable delivery, and scalable deployment</p>
+        </article>
       </div>
     </article>
   </div>
@@ -2073,7 +2174,7 @@
         <span class="chip">
           <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M 28.138 24.276 C 26.005 24.276 24.276 26.005 24.276 28.138 C 24.276 30.271 26.005 32 28.138 32 C 30.271 32 32 30.271 32 28.138 C 32 26.005 30.271 24.276 28.138 24.276 M 14.345 5.517 C 9.477 5.517 5.517 9.477 5.517 14.345 C 5.517 19.212 9.477 23.172 14.345 23.172 C 19.212 23.172 23.172 19.212 23.172 14.345 C 23.172 9.477 19.212 5.517 14.345 5.517 M 0 14.345 C 0 6.435 6.435 0 14.345 0 C 22.255 0 28.69 6.435 28.69 14.345 C 28.69 22.255 22.255 28.69 14.345 28.69 C 6.435 28.69 0 22.255 0 14.345 Z"/></svg>
         </span>
-        <span class="wm">Q<span class="dot"> </span>Bio</span>
+        <span class="wm">Bio</span>
       </a>
       <p class="sub">Q Bio is a health technology company that delivers the Q Exam and the Q Bio Health Dashboard — directly at our Redwood City clinic and through enterprise partners.</p>
       <p class="sub">Redwood City, CA · <a href='https://q.bio/clinic'>Visit our clinic →</a><br><a href="mailto:hello@q.bio">hello@q.bio</a></p>
