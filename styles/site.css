@@ -4,6 +4,7 @@
    a shared topbar/footer, and motion utilities.
    ============================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap');
 
 :root {
@@ -47,9 +48,8 @@ img { max-width: 100%; display: block; }
   line-height: 1.02;
 }
 .display.serif {
-  font-family: 'Fraunces', serif;
+  font-family: 'Google Sans Flex', 'Google Sans', 'Inter Tight', sans-serif;
   font-weight: 300;
-  font-feature-settings: 'ss01', 'ss02';
   letter-spacing: -0.015em;
   line-height: 1.05;
 }
@@ -92,14 +92,20 @@ img { max-width: 100%; display: block; }
   transform: translateY(-1px);
   box-shadow: 0 4px 16px -6px rgba(7,32,63,0.22);
 }
-.q-btn.primary { background: var(--ink-1); color: #fff; }
-.q-btn.primary:hover { background: #0a2d54; }
-.q-btn.ghost { background: transparent; color: var(--ink-1); }
+.q-btn.primary { background: var(--ink-1); color: #fff; border-color: transparent; }
+.q-btn.primary:hover { background: var(--q-blue); color: #fff; }
+.q-btn.ghost { background: transparent; color: var(--ink-1); border-color: transparent; }
 .q-btn.ghost:hover { background: rgba(7,32,63,0.06); }
-.q-btn.outline { background: transparent; color: var(--ink-1); border-color: rgba(7,32,63,0.15); }
-.q-btn.outline:hover { border-color: var(--ink-1); }
-.q-btn.blue { background: var(--q-blue); color: #fff; }
+.q-btn.outline { background: #fff; color: var(--ink-1); border-color: transparent; }
+.q-btn.outline:hover { background: rgba(255,255,255,0.88); }
+.q-btn.blue { background: var(--q-blue); color: #fff; border-color: transparent; }
 .q-btn.blue:hover { background: var(--q-blue-hover); }
+.q-btn.icon-btn {
+  width: 36px; height: 36px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border-color: transparent;
+  border-radius: var(--r-md);
+}
 .q-btn.sm { height: 36px; padding: 0 14px; font-size: 13px; }
 .q-btn.lg { height: 52px; padding: 0 28px; font-size: 15px; }
 .q-btn .arr {
@@ -166,8 +172,8 @@ body.has-hero-overlay .q-top:not(.scrolled) {
   --topbar-menu-border: rgba(255,255,255,0.32);
   --topbar-menu-bg: transparent;
   --topbar-menu-ink: #fff;
-  --topbar-primary-bg: #fff;
-  --topbar-primary-ink: var(--ink-1);
+  --topbar-primary-bg: var(--q-blue);
+  --topbar-primary-ink: #fff;
 }
 
 /* Token consumers — apply state-driven colors everywhere. Scoped under .q-top
@@ -200,11 +206,12 @@ body.has-hero-overlay .q-top:not(.scrolled) {
 .q-top .q-actions .q-btn.primary {
   background: var(--topbar-primary-bg) !important;
   color: var(--topbar-primary-ink) !important;
-  border-color: var(--topbar-primary-bg) !important;
+  border-color: transparent !important;
 }
 .q-top .q-actions .q-btn.primary:hover {
-  background: var(--topbar-primary-bg) !important;
-  filter: brightness(0.94);
+  background: var(--q-blue) !important;
+  color: #fff !important;
+  filter: none;
 }
 .q-top-inner {
   max-width: var(--max);
@@ -216,7 +223,11 @@ body.has-hero-overlay .q-top:not(.scrolled) {
   gap: 32px;
 }
 .q-brand { display: inline-flex; align-items: center; gap: 10px; }
-.q-brand .chip { display: none; }
+.q-brand .chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--q-blue);
+  flex: none;
+}
 .q-brand .wm {
   display: inline-block;
   width: 64px;
